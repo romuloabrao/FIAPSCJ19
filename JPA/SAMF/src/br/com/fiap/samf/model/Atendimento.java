@@ -8,8 +8,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+@NamedQuery(
+		name="listaProntuarioPaciente",
+		query="SELECT at FROM Atendimento at INNER JOIN at.agendamento ag " +
+			  "INNER JOIN ag.paciente p WHERE p.codigo = :pcodigo ")
 @Entity
 public class Atendimento {
 	@Id

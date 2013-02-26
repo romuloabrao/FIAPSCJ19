@@ -4,8 +4,13 @@ import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+
+@NamedQuery(
+		name="buscaMedicoPorEspecialidades",
+		query="SELECT m FROM Medico INNER JOIN m.especialidades e WHERE e.id = :ecodigo")
 @Entity
 @DiscriminatorValue("MEDICO")
 public class Medico extends Usuario {
