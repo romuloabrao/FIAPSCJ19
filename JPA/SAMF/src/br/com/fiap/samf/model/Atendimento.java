@@ -26,8 +26,8 @@ public class Atendimento {
 	private String descr;
 	@ManyToOne
 	private Convenio convenio;
-	@OneToMany
-	private List<Tratamento> tratamentos;
+	@OneToMany(mappedBy="codigo.atendimento")
+	private List<AtendimentoTratamentoItem> tratamentos;
 	@OneToMany
 	private List<Medicamento> medicamentos;
 	
@@ -55,11 +55,11 @@ public class Atendimento {
 	public void setConvenio(Convenio convenio) {
 		this.convenio = convenio;
 	}
-	public List<Tratamento> getTratamentos() {
-		return tratamentos;
-	}
-	public void setTratamentos(List<Tratamento> tratamentos) {
+	public void setTratamentos(List<AtendimentoTratamentoItem> tratamentos) {
 		this.tratamentos = tratamentos;
+	}
+	public List<AtendimentoTratamentoItem> getTratamentos() {
+		return tratamentos;
 	}
 	public List<Medicamento> getMedicamentos() {
 		return medicamentos;

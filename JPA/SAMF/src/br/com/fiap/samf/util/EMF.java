@@ -7,10 +7,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-/**
- * Application Lifecycle Listener implementation class EMF (For EntityManager Factory)
- * Using to validade acess throught the database
- */
 @WebListener
 public class EMF implements ServletContextListener {
 

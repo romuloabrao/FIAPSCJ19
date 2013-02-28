@@ -10,7 +10,8 @@
 		<class>br.com.fiap.samf.model.Paciente</class>
 		<class>br.com.fiap.samf.model.Tratamento</class>
 		<class>br.com.fiap.samf.model.Agendamento</class>
-		<class>br.com.fiap.samf.model.Atendimento</class>	 
+		<class>br.com.fiap.samf.model.Atendimento</class>
+		<class>br.com.fiap.samf.model.AtendimentoTratamentoItem</class>	 
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/samf"/>
