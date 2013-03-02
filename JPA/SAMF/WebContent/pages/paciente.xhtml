@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="template/layout.xhtml">
+
+	<ui:define name="contentComponent">
+		<h:form styleClass="form-horizontal">
+			<p:panel header="Manutençao de Pacientes">
+
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
+					<div class="controls">
+						<p:inputText id="nome" value="#{formPacienteMB.paciente.nome}"
+							required="true" label="Nome" />
+					</div>
+				</div>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="rg" value="R.G:" />
+					<div class="controls">
+						<p:inputText id="rg" value="#{formPacienteMB.paciente.rg}"
+							required="true" label="R.G" />
+					</div>
+				</div>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="cpf" value="C.P.F:" />
+					<div class="controls">
+						<p:inputText id="cpf" value="#{formPacienteMB.paciente.cpf}"
+							required="true" label="C.P.F" />
+					</div>
+				</div>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="convenio"
+						value="Selecione o Convenio" />
+					<div class="controls">
+						<p:selectOneMenu value="#{formPacienteMB.paciente.convenio}"
+							id="convenio" required="false" label="Convenio" converter="ConvenioConverter">
+							<f:selectItem itemLabel="Selecione" itemValue=""/>
+							<f:selectItems value="#{viewConvenioMB.convenios}" var="convenio"
+								itemLabel="#{convenio.nome}" itemValue="#{convenio}"/>
+						</p:selectOneMenu>
+					</div>
+				</div>
+				<div class="control-group">
+					<h:commandButton styleClass="btn" value="Salvar" action="#"
+						actionListener="#{formPacienteMB.salvarPaciente}" ajax="true" />
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+</html>

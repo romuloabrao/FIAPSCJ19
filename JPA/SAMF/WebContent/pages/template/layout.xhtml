@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet name="main.css" library="css" />
+	<h:outputStylesheet name="bootstrap.min.css" library="css"/>
+	<title>SAMF - Sistema de Atendimento Médico FIAP</title>
+</h:head>
+
+<h:body>
+	<header class="clearfix">
+		<ui:insert name="headerComponent">
+			<ui:include src="header.xhtml" />
+		</ui:insert>
+	</header>
+	<div id="menuTop" class="clearfix">
+		<ui:insert name="menuComponent">
+			<ui:include src="menu.xhtml" />
+		</ui:insert>
+	</div>
+	<div id="mainContent">
+		<section class="clearfix">
+			<ui:insert name="contentComponent" />
+		</section>
+	</div>
+	<footer class="clearfix">
+		<ui:insert name="footerComponent">
+			<ui:include src="footer.xhtml" />
+		</ui:insert>
+	</footer>
+</h:body>
+</html>

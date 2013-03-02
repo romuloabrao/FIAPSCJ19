@@ -1,0 +1,75 @@
+@CHARSET "ISO-8859-1";
+
+body {
+	margin: 0;
+	border: 0;
+}
+
+section {
+	width: 1080px;
+	margin: 0 auto;
+}
+
+/*cabecalho HTML5 */
+header {
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	margin-bottom: 0px !important;
+}
+header > section > h1{
+	color: #db1e24;
+	text-shadow:2px 2px 2px #ddd;
+	float:left;
+}
+
+header > section > h3{
+	color: #db1e24;
+	text-shadow:2px 2px 2px #ddd;
+	float:left;
+}
+
+#logoHEAD{
+	background: url(../resources/img/logo.png) no-repeat;
+	height: 140px;
+	width: 140px;
+	margin: 0;
+	text-indent: -9999px;
+	position: relative;
+}
+
+/*menu do topo*/
+#menuTop {
+	background-color: #db1e24;
+	background-image: -moz-linear-gradient(#e9787c 0, #e9787c 1px, #e66166 1px, #dd292f 50%,
+		#d01d22 50%, #af181d 100%);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#e9787c),
+		to(#af181d), color-stop(.03, #e9787c), color-stop(.03, #e66166),
+		color-stop(50%, #dd292f), color-stop(50%, #d01d22),
+		color-stop(100%, #af181d) );
+}
+
+#menuTop .nav>li>a {
+	color: #f2a0a3;
+}
+#menuTop .nav>li>a:hover {
+	color: #fff;
+}
+
+/*corpo*/
+#mainContent {
+	background-color: #eee;
+}
+
+#mainContent>section {
+	min-height: 500px;
+	background-color: #fff;
+}
+
+/*rodape HTML5 */
+footer {
+	background-color: #333;
+	color: #999;
+	text-align: center font-size:  12px;
+	height: 87px;
+}
