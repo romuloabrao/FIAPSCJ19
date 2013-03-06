@@ -9,19 +9,29 @@ import javax.persistence.Id;
 public class Especialidade {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private Long codigo;
 	private String nome;
 	
-	public void setId(long id) {
-		this.id = id;
+	public void setCodigo(Long codigo) {
+		this.codigo = codigo;
 	}
-	public long getId() {
-		return id;
+	
+	public Long getCodigo() {
+		return codigo;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 	public String getNome() {
 		return nome;
 	}
+	
+	public boolean equals(Object object){
+		if(object instanceof Especialidade && this.getCodigo()!=null){
+			return this.codigo==((Especialidade)object).getCodigo();
+		}
+		return false;
+	}
+	
 }

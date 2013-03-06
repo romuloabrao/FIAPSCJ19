@@ -6,4 +6,17 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_1.xsd"
     version="2.1">
 
+<!-- 
+Pra realizar uma conversão
+<converter>
+  <converter-id>samf.ConvenioConverter</converter-id>
+  <converter-class>br.com.fiap.samf.mbean.converter.ConvenioConverter</converter-class>
+</converter>
+
+<converter>
+  <converter-id>samf.EspecialidadeConverter</converter-id>
+  <converter-class>br.com.fiap.samf.mbean.converter.EspecialidadeConverter</converter-class>
+</converter>
+ -->
+
 </faces-config>

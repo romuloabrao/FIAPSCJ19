@@ -17,9 +17,14 @@ public class ViewConvenioMB implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -3856389051947194521L;
-
-	public List<Convenio> getConvenios(){
+	private List<Convenio> convenios;
+	
+	public ViewConvenioMB() {
 		GenericCrudControl<Convenio> control = new GenericCrudControl<>(Convenio.class);
-		return control.listar();
+		convenios = control.listar();
+	}
+	
+	public List<Convenio> getConvenios(){
+		return convenios;
 	}
 }

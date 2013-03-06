@@ -14,15 +14,15 @@ public class Usuario {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private long codigo;
 	private String user;
 	private String senha;
 	
-	public long getId() {
-		return id;
+	public long getCodigo() {
+		return codigo;
 	}
-	public void setId(long id) {
-		this.id = id;
+	public void setCodigo(long codigo) {
+		this.codigo = codigo;
 	}
 	public String getUser() {
 		return user;

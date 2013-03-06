@@ -24,8 +24,9 @@ public class FormPacienteMB{
 		return true;
 	}
 	
-	public void salvarPaciente(){
+	public String salvarPaciente(){
 		CrudControl<Paciente> control = new GenericCrudControl<Paciente>(Paciente.class);
 		control.criar(this.paciente);
+		return "paciente";
 	}
 }

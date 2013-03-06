@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="template/layout.xhtml">
+	<ui:define name="contentComponent">
+		<h:form styleClass="form-horizontal">
+			<fieldset>
+				<legend>Manutenção de Médicos</legend>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
+					<div class="controls">
+						<p:inputText id="nome" value="#{formMedicoMB.med.nome}"
+							required="true" label="Nome" />
+					</div>
+				</div>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="crm" value="CRM:" />
+					<div class="controls">
+						<p:inputText id="crm" value="#{formMedicoMB.med.crm}"
+							required="true" label="CRM" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="rg" value="RG:" />
+					<div class="controls">
+						<p:inputText id="rg" value="#{formMedicoMB.med.rg}"
+							required="true" label="RG" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<p:outputLabel styleClass="help-block" for="especialiades"
+							value="Selecione as Especialidades" />
+						<p:selectManyCheckbox value="#{formMedicoMB.med.especialidades}"
+							id="especialiades" required="false" label="Especialiades"
+							layout="pageDirection" converter="samf.EspecialidadeConverter">
+							<f:selectItems styleClass="checkbox"
+								value="#{viewEspecialidadeMB.especialidades}"
+								var="especialidade" itemLabel="#{especialidade.nome}"
+								itemValue="#{especialidade}" />
+						</p:selectManyCheckbox>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<h:commandButton styleClass="btn" value="Salvar" action="medico"
+							actionListener="#{formMedicoMB.salvarMedico}" ajax="false" />
+					</div>
+				</div>
+
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

@@ -20,7 +20,7 @@ import javax.persistence.OneToOne;
 public class Atendimento {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long codigo;
+	private Long codigo;
 	@OneToOne
 	private Agendamento agendamento;
 	private String descr;
@@ -31,10 +31,10 @@ public class Atendimento {
 	@OneToMany
 	private List<Medicamento> medicamentos;
 	
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public Agendamento getAgendamento() {

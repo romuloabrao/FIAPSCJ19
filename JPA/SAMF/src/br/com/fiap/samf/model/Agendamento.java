@@ -9,10 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Agendamento {
+public class Agendamento{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long codigo;
+	private Long codigo;
 	@ManyToOne
 	private Atendente atendente;
 	@ManyToOne
@@ -23,10 +23,10 @@ public class Agendamento {
 	@ManyToOne
 	private Convenio convenio;
 	
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public Atendente getAtendente() {

@@ -1,5 +1,6 @@
 package br.com.fiap.samf.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -9,10 +10,14 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
 @Entity
-public class Convenio {
+public class Convenio implements  Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 51594201944092152L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long codigo;
+	private Long codigo;
 	private String nome;
 	@ManyToMany
 	/*@JoinTable(name="ConvenioTratamento",
@@ -20,11 +25,11 @@ public class Convenio {
 				inverseJoinColumns={@JoinColumn(name="codigoTratamento",referencedColumnName="codigo")})*/
 	private List<Tratamento> tratamentosAutorizados;
 	
-	public long getCodigo() {
+
+	public Long getCodigo() {
 		return codigo;
 	}
-
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 	public String getNome() {
@@ -40,6 +45,13 @@ public class Convenio {
 	
 	public List<Tratamento> getTratamentosAutorizados() {
 		return tratamentosAutorizados;
+	}
+	
+	public boolean equals(Object object){
+		if(object instanceof Convenio && this.getCodigo()!=null){
+			return this.codigo==((Convenio)object).getCodigo();
+		}
+		return false;
 	}
 	
 }

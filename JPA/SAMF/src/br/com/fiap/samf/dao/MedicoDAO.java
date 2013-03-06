@@ -9,15 +9,14 @@ import br.com.fiap.samf.model.Medico;
 
 public class MedicoDAO extends GenericDAO<Medico> {
 
-	@SuppressWarnings("unchecked")
 	public MedicoDAO( EntityManager em) {
-		super((Class<Medico>) new Medico().getClass(), em);
+		super(Medico.class, em);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Medico> buscaMedicoPorEspecialidades(Especialidade esp){
+	public List<Medico> listar(Especialidade esp){
 		return em.createNamedQuery("buscaMedicoPorEspecialidades")
-        .setParameter("ecodigo", esp.getId())
+        .setParameter("ecodigo", esp.getCodigo())
         .getResultList();
 	}
 	

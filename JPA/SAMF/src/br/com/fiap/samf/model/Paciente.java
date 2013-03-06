@@ -1,6 +1,8 @@
 package br.com.fiap.samf.model;
 
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +11,11 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-public class Paciente {
+public class Paciente implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3415951304012484034L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long codigo;
