@@ -26,9 +26,4 @@ public class FormEspecialiadeMB {
 		return "especialidade";
 	}
 	
-	public String novo(){
-		this.especialidade = new Especialidade();
-		return "especialidade";
-	}
-	
 }

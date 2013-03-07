@@ -1,0 +1,7 @@
+@CHARSET "ISO-8859-1";
+
+/*fix para funcionar com primefaces e bootstrap */
+
+.ui-helper-hidden {
+	display: none !important;
+}
