@@ -15,8 +15,11 @@ public class PickListConvenio {
     List<Convenio> itensNConveniados = null; 
     private DualListModel<Convenio> convenios;  
   
-    public PickListConvenio(Tratamento tratamento) {  
-    	this.itensNConveniados = new GenericCrudControl<Convenio>(Convenio.class).listar();
+    public PickListConvenio(Tratamento tratamento) {
+    	if(this.itensNConveniados== null){
+    		this.itensNConveniados = new GenericCrudControl<Convenio>(Convenio.class).listar();
+    	}
+    	
     	if(tratamento.getListaConvenio()==null){
         	this.itensConveniados = new ArrayList<Convenio>();
         }else{
@@ -34,4 +37,11 @@ public class PickListConvenio {
 		return convenios;
 	}
     
+    public List<Convenio> getItensConveniados() {
+		return itensConveniados;
+	}
+    
+    public List<Convenio> getItensNConveniados() {
+		return itensNConveniados;
+	}
 }  

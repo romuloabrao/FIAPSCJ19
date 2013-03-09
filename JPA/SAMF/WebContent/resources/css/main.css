@@ -20,15 +20,13 @@ header {
 header > section > h1{
 	color: #db1e24;
 	text-shadow:2px 2px 2px #ddd;
-	float:left;
+	float: left;
 }
-
 header > section > h3{
 	color: #db1e24;
 	text-shadow:2px 2px 2px #ddd;
-	float:left;
+	display: block;
 }
-
 #logoHEAD{
 	background: url(../resources/img/logo.png) no-repeat;
 	height: 140px;
@@ -48,7 +46,6 @@ header > section > h3{
 		color-stop(50%, #dd292f), color-stop(50%, #d01d22),
 		color-stop(100%, #af181d) );
 }
-
 #menuTop .nav>li>a {
 	color: #f2a0a3;
 }
@@ -60,7 +57,6 @@ header > section > h3{
 #mainContent {
 	background-color: #eee;
 }
-
 #mainContent>section {
 	min-height: 500px;
 	background-color: #fff;
@@ -72,4 +68,26 @@ footer {
 	color: #999;
 	text-align: center font-size:  12px;
 	height: 87px;
+}
+
+.loginContainer{
+	background-color: #db1e24;
+	width: 550px;
+	height: 350px;
+	margin: auto;
+	margin-top: 100px;
+	-webkit-border-radius: 40px;
+	-moz-border-radius: 40px;
+	border-radius: 40px;
+}
+
+.loginContainer > form{
+	margin: 60px 0;
+	color: #fff !important;
+}
+
+.loginContainer h3,.loginContainer h6{
+	text-align:center;
+	margin: 0;
+	padding:0;
 }

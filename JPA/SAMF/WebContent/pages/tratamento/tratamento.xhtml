@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="../template/layout.xhtml">
+	<ui:define name="contentComponent">
+		<h:form styleClass="form-horizontal">
+			<fieldset>
+				<legend>Manutenção de Tratamentos (consultas/exames)</legend>
+
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="convenio"
+						value="Especialidade" />
+					<div class="controls">
+						<h:selectOneMenu
+							value="#{formTratamentoMB.tratamento.especialidade}"
+							id="convenio" required="true" label="Especialidade"
+							converter="samf.EspecialidadeConverter">
+							<f:selectItems value="#{viewEspecialidadeMB.especialidades}"
+								var="especialidade" itemLabel="#{especialidade.nome}"
+								itemValue="#{especialidade}" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
+					<div class="controls">
+						<p:inputText id="nome" value="#{formTratamentoMB.tratamento.nome}"
+							required="true" label="Nome" />
+					</div>
+				</div>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="vlr" value="Valor:" />
+					<div class="controls">
+						<p:inputText id="vlr" value="#{formTratamentoMB.tratamento.valor}"
+							required="true" label="Valor" />
+					</div>
+				</div>
+
+
+
+				<div class="control-group">
+					<div class="controls">
+						<p:pickList id="pickListConvenios"
+							value="#{formTratamentoMB.pKconvenios.convenios}" var="convenio"
+							itemLabel="#{convenio.nome}" itemValue="#{convenio}" converter="samf.ConvenioConverter">
+							<f:facet name="sourceCaption">Convenios Suportados</f:facet>
+							<f:facet name="targetCaption">Não Suportados</f:facet>
+						</p:pickList>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<div class="controls">
+						<h:commandButton styleClass="btn" value="Salvar"
+							actionListener="#{formTratamentoMB.salvarTratamento}"
+							ajax="false" />
+					</div>
+				</div>
+
+
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

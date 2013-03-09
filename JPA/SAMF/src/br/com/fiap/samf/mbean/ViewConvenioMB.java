@@ -8,7 +8,6 @@ import javax.faces.bean.ViewScoped;
 
 import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.model.Convenio;
-import br.com.fiap.samf.model.Tratamento;
 
 @ManagedBean
 @ViewScoped

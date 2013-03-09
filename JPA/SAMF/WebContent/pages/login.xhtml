@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<ui:include src="/pages/template/metaHead.xhtml" />
+</h:head>
+
+<body>
+	<section>
+		<div class="loginContainer clearfix">
+		
+			<h:form styleClass="form-horizontal">
+				<div class="control-group">
+					<h3>Login</h3>
+					<h6>Sistema de Atendimetno Médico</h6>
+				</div>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
+					<div class="controls">
+						<p:inputText id="nome"
+							value="#{formEspecialiadeMB.especialidade.nome}" required="true"
+							label="Nome" />
+					</div>
+				</div>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="password"
+						value="Password:" />
+					<div class="controls">
+						<p:password id="password"
+							value="#{formEspecialiadeMB.especialidade.nome}" required="true"
+							label="Nome" />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<h:commandButton styleClass="btn btn-large" value="Entrar"
+							actionListener="#{formEspecialiadeMB.salvarEspecialidade}"
+							ajax="false" />
+					</div>
+				</div>
+			</h:form>
+		</div>
+	</section>
+</body>
+
+</html>

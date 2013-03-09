@@ -6,7 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQuery;
 
+@NamedQuery(
+		name="validaUsuario",
+		query="SELECT u FROM Usuario u WHERE u.user = :uuser AND u.senha= :usenha")
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="tipoUsuario")

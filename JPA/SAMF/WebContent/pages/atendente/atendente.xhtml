@@ -1,26 +1,33 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 
-<ui:composition template="template/layout.xhtml">
+<ui:composition template="../template/layout.xhtml">
 	<ui:define name="contentComponent">
 		<h:form styleClass="form-horizontal">
 			<fieldset>
-				<legend>Manutenção de Especialidades Médicas</legend>
+				<legend>Manutenção de Atendentes</legend>
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
-						<p:inputText id="nome" value="#{formEspecialiadeMB.especialidade.nome}"
+						<p:inputText id="nome" value="#{f}"
 							required="true" label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="rg" value="RG:" />
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="Salvar"
-							actionListener="#{formEspecialiadeMB.salvarEspecialidade}" ajax="false" />
+						<p:inputText id="rg" value="#{formAtendenteMB.atend.rg}"
+							required="true" label="RG" />
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<h:commandButton styleClass="btn" value="Salvar" action="atendente"
+							actionListener="#{formAtendenteMB.salvarAtendente}" ajax="false" />
 					</div>
 				</div>
 
