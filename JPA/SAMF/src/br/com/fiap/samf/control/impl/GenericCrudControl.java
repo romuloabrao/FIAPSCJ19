@@ -9,9 +9,10 @@ import javax.persistence.EntityManager;
 import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.dao.DAO;
 import br.com.fiap.samf.dao.GenericDAO;
+import br.com.fiap.samf.model.BaseEntity;
 import br.com.fiap.samf.util.EMF;
 
-public class GenericCrudControl<T> implements CrudControl<T>{
+public class GenericCrudControl<T extends BaseEntity<?>> implements CrudControl<T>{
 	protected EntityManager em;
 	protected Class<T> classe;
 	protected DAO<T> dao;
@@ -53,7 +54,7 @@ public class GenericCrudControl<T> implements CrudControl<T>{
 	}
 		
 	@Override
-	public T buscar(long id) {
+	public T buscar(Long id) {
 		em.getTransaction().begin();
 		T t= dao.buscar(id);
 		em.getTransaction().commit();
@@ -69,9 +70,14 @@ public class GenericCrudControl<T> implements CrudControl<T>{
 	}
 
 	@Override
-	public void criar(T t) {
-		em.getTransaction().begin();
-		dao.criar(t);
+	public void salvar(T t) {
+		em.getTransaction().begin();		
+		if(t.getCodigo()!=null ){
+			em.getReference(classe, t.getCodigo());
+			dao.atualizar(t);
+		}else{
+			dao.criar(t);
+		}
 		em.getTransaction().commit();
 	}
 
@@ -81,5 +87,4 @@ public class GenericCrudControl<T> implements CrudControl<T>{
 		dao.remover(t);
 		em.getTransaction().commit();
 	}
-
 }

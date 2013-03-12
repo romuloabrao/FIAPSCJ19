@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="../template/layout.xhtml">
 	<ui:define name="contentComponent">
@@ -13,21 +14,22 @@
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
-						<p:inputText id="nome" value="#{f}"
+						<p:inputText id="nome" value="#{atendenteMB.atend.nome}"
 							required="true" label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="rg" value="RG:" />
 					<div class="controls">
-						<p:inputText id="rg" value="#{formAtendenteMB.atend.rg}"
+						<p:inputText id="rg" value="#{atendenteMB.atend.rg}"
 							required="true" label="RG" />
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="Salvar" action="atendente"
-							actionListener="#{formAtendenteMB.salvarAtendente}" ajax="false" />
+						<p:commandButton styleClass="btn" action="viewatendente"
+							actionListener="#{atendenteMB.salvar}"
+							value="#{atendenteMB.acao}" ajax="false"/>
 					</div>
 				</div>
 

@@ -11,14 +11,14 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-public class Paciente implements Serializable{
+public class Paciente implements Serializable, BaseEntity<Long>{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3415951304012484034L;
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long codigo;
+	private Long codigo;
 	private String nome;
 	private String rg;
 	private String cpf;
@@ -26,10 +26,10 @@ public class Paciente implements Serializable{
 	private Convenio convenio;
 	
 	
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 	public void setNome(String nome) {
@@ -56,4 +56,31 @@ public class Paciente implements Serializable{
 	public String getCpf() {
 		return cpf;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Paciente))
+			return false;
+		Paciente other = (Paciente) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
+	}
+	
+	
 }

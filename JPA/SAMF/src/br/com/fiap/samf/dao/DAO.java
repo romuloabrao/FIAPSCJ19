@@ -6,5 +6,6 @@ public interface DAO<T> {
 	public T buscar(long id);
 	public List<T> listar();
 	public void criar(T t);
+	public void atualizar(T t);
 	public void remover(T t);
 }

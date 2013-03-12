@@ -16,13 +16,13 @@
 			<h:form styleClass="form-horizontal">
 				<div class="control-group">
 					<h3>Login</h3>
-					<h6>Sistema de Atendimetno Médico</h6>
+					<h6>Sistema de Atendimento Médico</h6>
 				</div>
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
 						<p:inputText id="nome"
-							value="#{formEspecialiadeMB.especialidade.nome}" required="true"
+							value="#{SessionUser.user.user}" required="true"
 							label="Nome" />
 					</div>
 				</div>
@@ -31,14 +31,14 @@
 						value="Password:" />
 					<div class="controls">
 						<p:password id="password"
-							value="#{formEspecialiadeMB.especialidade.nome}" required="true"
+							value="#{SessionUser.user.senha}" required="true"
 							label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
 						<h:commandButton styleClass="btn btn-large" value="Entrar"
-							actionListener="#{formEspecialiadeMB.salvarEspecialidade}"
+							action="#{SessionUser.Login}"
 							ajax="false" />
 					</div>
 				</div>

@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="../template/layout.xhtml">
 	<ui:define name="contentComponent">
@@ -11,33 +12,49 @@
 			<fieldset>
 				<legend>Manutenção de Medicamentos</legend>
 				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
+					<div class="controls">
+						<p:inputText disabled="true" id="id"
+							value="#{formMedicamentoMB.medicamento.codigo}" required="true"
+							label="Codigo" />
+					</div>
+				</div>
+
+				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
-						<p:inputText id="nome" value="#{formMedicamentoMB.medicamento.nome}"
+						<p:inputText id="nome"
+							value="#{formMedicamentoMB.medicamento.nome}" required="true"
+							label="Nome" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="valor"
+						value="Valor:" />
+					<div class="controls">
+						<p:inputText id="valor"
+							value="#{formMedicamentoMB.medicamento.valor}" required="true"
+							label="Nome" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="fabricante"
+						value="Fabricante:" />
+					<div class="controls">
+						<p:inputText id="fabricante"
+							value="#{formMedicamentoMB.medicamento.fabricante}"
 							required="true" label="Nome" />
 					</div>
 				</div>
-				
-				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="valor" value="Valor:" />
-					<div class="controls">
-						<p:inputText id="valor" value="#{formMedicamentoMB.medicamento.valor}"
-							required="true" label="Nome" />
-					</div>
-				</div>
-				
-				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="fabricante" value="Fabricante:" />
-					<div class="controls">
-						<p:inputText id="fabricante" value="#{formMedicamentoMB.medicamento.fabricante}"
-							required="true" label="Nome" />
-					</div>
-				</div>
-				
+
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="Salvar" action="medicamento"
-							actionListener="#{formMedicamentoMB.salvarMedicamento}" ajax="false" />
+						<h:commandButton styleClass="btn"
+							value="#{formMedicamentoMB.acao}" action="medicamento"
+							actionListener="#{formMedicamentoMB.salvar}" ajax="false">
+						</h:commandButton>
 					</div>
 				</div>
 			</fieldset>

@@ -10,6 +10,16 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Manutenção de Convenios</legend>
+				
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
+					<div class="controls">
+						<p:inputText disabled="true" id="id"
+							value="#{formConvenioMB.convenio.codigo}" required="true"
+							label="Codigo" />
+					</div>
+				</div>
+
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
@@ -19,8 +29,9 @@
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="Salvar" action="convenio"
-							actionListener="#{formConvenioMB.salvarConvenio}" ajax="false" />
+						<h:commandButton styleClass="btn" value="#{formConvenioMB.acao}"
+							action="convenio" actionListener="#{formConvenioMB.salvar}"
+							ajax="false" />
 					</div>
 				</div>
 

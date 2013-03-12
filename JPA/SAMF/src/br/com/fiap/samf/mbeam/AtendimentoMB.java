@@ -1,10 +1,10 @@
-package br.com.fiap.samf.mbean;
+package br.com.fiap.samf.mbeam;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-@ManagedBean
+@ManagedBean(name="FormAtendimentoMB")
 @RequestScoped
-public class FormAtendimentoMB {
+public class AtendimentoMB {
 	
 }

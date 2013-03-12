@@ -6,16 +6,11 @@ import javax.persistence.Entity;
 @Entity
 @DiscriminatorValue("ATENDENTE")
 public class Atendente extends Usuario {
-	private String nome;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -471664313724018976L;
 	private String rg;
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
 	
 	public void setRg(String rg) {
 		this.rg = rg;
@@ -24,5 +19,4 @@ public class Atendente extends Usuario {
 	public String getRg() {
 		return rg;
 	}
-
 }

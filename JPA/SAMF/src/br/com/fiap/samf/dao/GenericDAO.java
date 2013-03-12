@@ -31,10 +31,17 @@ public class GenericDAO<T> implements DAO<T> {
 	public void criar(T t) {
 		em.persist(t);
 	}
+	
+	@Override
+	public void atualizar(T t) {
+		em.merge(t);
+	}
 
 	@Override
 	public void remover(T t) {
 		em.remove(t);
 	}
+
+
 
 }

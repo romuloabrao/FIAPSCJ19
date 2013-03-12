@@ -13,8 +13,8 @@ public class TratamentoDAO extends GenericDAO<Tratamento>{
 		super(Tratamento.class, em);
 	}
 
-	public void criar(Tratamento tratamento,List<Convenio> convenios){
-		for (Convenio conv: convenios){
+	public void criar(Tratamento tratamento,List<Convenio> list){
+		for (Convenio conv: list){
 			conv = em.getReference(Convenio.class, conv.getCodigo());
 			conv.getTratamentosAutorizados().add(tratamento);
 		}

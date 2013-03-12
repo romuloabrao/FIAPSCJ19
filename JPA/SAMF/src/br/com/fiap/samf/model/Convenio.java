@@ -1,7 +1,7 @@
 package br.com.fiap.samf.model;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Collection;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import br.com.fiap.samf.model.Tratamento;
 
 @Entity
-public class Convenio implements  Serializable{
+public class Convenio implements  Serializable,BaseEntity<Long>{
 	
 	/**
 	 * 
@@ -26,9 +26,9 @@ public class Convenio implements  Serializable{
 	/*@JoinTable(name="ConvenioTratamento",
 				joinColumns={@JoinColumn(name="codigoConvenio",referencedColumnName="codigo")}, 
 				inverseJoinColumns={@JoinColumn(name="codigoTratamento",referencedColumnName="codigo")})*/
-	private List<Tratamento> tratamentosAutorizados;
+	private Collection<Tratamento> tratamentosAutorizados;
 	
-
+	
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -42,19 +42,37 @@ public class Convenio implements  Serializable{
 		this.nome = nome;
 	}
 	
-	public void setTratamentosAutorizados(List<Tratamento> tratamentosAutorizados) {
+	public void setTratamentosAutorizados(Collection<Tratamento> tratamentosAutorizados) {
 		this.tratamentosAutorizados = tratamentosAutorizados;
 	}
 	
-	public List<Tratamento> getTratamentosAutorizados() {
+	public Collection<Tratamento> getTratamentosAutorizados() {
 		return tratamentosAutorizados;
 	}
 	
-	public boolean equals(Object object){
-		if(object instanceof Convenio && this.getCodigo()!=null){
-			return this.codigo==((Convenio)object).getCodigo();
-		}
-		return false;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (!(obj instanceof Convenio))
+			return false;
+		Convenio other = (Convenio) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
 	}
 	
 }

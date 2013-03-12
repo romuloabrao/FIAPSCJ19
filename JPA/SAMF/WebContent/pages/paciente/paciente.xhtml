@@ -3,13 +3,23 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="../template/layout.xhtml">
 	<ui:define name="contentComponent">
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Manutenção Paciente</legend>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
+					<div class="controls">
+						<p:inputText disabled="true" id="id"
+							value="#{formPacienteMB.paciente.codigo}" required="true"
+							label="Codigo" />
+					</div>
+				</div>
+
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
@@ -36,17 +46,20 @@
 						value="Selecione o Convenio" />
 					<div class="controls">
 						<h:selectOneMenu value="#{formPacienteMB.paciente.convenio}"
-							id="convenio" required="false" label="Convenio" converter="samf.ConvenioConverter">
+							id="convenio" required="false" label="Convenio"
+							converter="samf.ConvenioConverter">
 							<f:selectItem itemLabel="Selecione" itemValue="" />
-							<f:selectItems value="#{viewConvenioMB.convenios}" var="convenio"
+							<f:selectItems value="#{formConvenioMB.convenios}" var="convenio"
 								itemLabel="#{convenio.nome}" itemValue="#{convenio}" />
 						</h:selectOneMenu>
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="Salvar" action="aluno"
-							actionListener="#{formPacienteMB.salvarPaciente}" />
+						<h:commandButton styleClass="btn" action="aluno"
+							value="#{formConvenioMB.acao}"
+							actionListener="#{formPacienteMB.salvar}">
+						</h:commandButton>
 					</div>
 				</div>
 			</fieldset>

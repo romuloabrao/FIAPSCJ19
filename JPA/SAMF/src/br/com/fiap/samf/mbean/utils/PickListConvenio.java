@@ -1,4 +1,4 @@
-package br.com.fiap.samf.mbean.picklist;
+package br.com.fiap.samf.mbean.utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +17,13 @@ public class PickListConvenio {
   
     public PickListConvenio(Tratamento tratamento) {
     	if(this.itensNConveniados== null){
-    		this.itensNConveniados = new GenericCrudControl<Convenio>(Convenio.class).listar();
+    		this.itensNConveniados = (List<Convenio>) new GenericCrudControl<Convenio>(Convenio.class).listar();
     	}
     	
     	if(tratamento.getListaConvenio()==null){
         	this.itensConveniados = new ArrayList<Convenio>();
         }else{
-        	this.itensConveniados = tratamento.getListaConvenio();
+        	this.itensConveniados = (List<Convenio>) tratamento.getListaConvenio();
         }
         this.itensNConveniados.removeAll(this.itensConveniados);
         convenios = new DualListModel<Convenio>(this.itensConveniados, this.itensNConveniados);  

@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <ui:composition template="../template/layout.xhtml">
 	<ui:define name="contentComponent">
@@ -11,16 +12,17 @@
 			<fieldset>
 				<legend>Manutenção de Especialidades Médicas</legend>
 				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
+					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
 					<div class="controls">
-						<p:inputText id="nome" value="#{formEspecialiadeMB.especialidade.nome}"
-							required="true" label="Nome" />
+						<p:inputText disabled="true" id="id"
+							value="#{formEspecialiadeMB.especialidade.codigo}" required="true"
+							label="Codigo" />
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="Salvar"
-							actionListener="#{formEspecialiadeMB.salvarEspecialidade}" ajax="false" />
+						<h:commandButton styleClass="btn" value="#{formEspecialiadeMB.acao}"
+							actionListener="#{formEspecialiadeMB.salvar}" ajax="false"/>
 					</div>
 				</div>
 			</fieldset>

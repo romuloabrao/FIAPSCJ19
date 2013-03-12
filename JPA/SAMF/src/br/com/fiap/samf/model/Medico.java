@@ -14,8 +14,13 @@ import javax.persistence.OneToMany;
 @Entity
 @DiscriminatorValue("MEDICO")
 public class Medico extends Usuario {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7336533739947954626L;
+
 	private String crm;
-	private String nome;
+	
 	private String rg;
 	@OneToMany
 	private List<Especialidade> especialidades;
@@ -25,12 +30,6 @@ public class Medico extends Usuario {
 	}
 	public void setCrm(String crm) {
 		this.crm = crm;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
 	}
 	public String getRg() {
 		return rg;
@@ -44,4 +43,5 @@ public class Medico extends Usuario {
 	public void setEspecialidades(List<Especialidade> especialidades) {
 		this.especialidades = especialidades;
 	}
+	
 }

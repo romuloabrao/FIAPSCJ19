@@ -1,6 +1,7 @@
 package br.com.fiap.samf.control.impl;
 
 import java.util.List;
+
 import br.com.fiap.samf.dao.TratamentoDAO;
 import br.com.fiap.samf.model.Convenio;
 import br.com.fiap.samf.model.Tratamento;
@@ -11,9 +12,9 @@ public class TratamentoControl extends GenericCrudControl<Tratamento>{
 		super(Tratamento.class,TratamentoDAO.class);
 	}
 	
-	public void criar(Tratamento tratamento,List<Convenio> convenios){
+	public void criar(Tratamento tratamento,List<Convenio> list){
 		em.getTransaction().begin();
-		((TratamentoDAO)dao).criar(tratamento,convenios);
+		((TratamentoDAO)dao).criar(tratamento,list);
 		em.getTransaction().commit();
 	}
 
