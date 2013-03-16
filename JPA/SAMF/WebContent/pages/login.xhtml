@@ -22,7 +22,7 @@
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
 						<p:inputText id="nome"
-							value="#{SessionUser.user.user}" required="true"
+							value="#{sessionUser.user.user}" required="true"
 							label="Nome" />
 					</div>
 				</div>
@@ -31,14 +31,14 @@
 						value="Password:" />
 					<div class="controls">
 						<p:password id="password"
-							value="#{SessionUser.user.senha}" required="true"
+							value="#{sessionUser.user.senha}" required="true"
 							label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
 						<h:commandButton styleClass="btn btn-large" value="Entrar"
-							action="#{SessionUser.Login}"
+							action="#{sessionUser.Login}"
 							ajax="false" />
 					</div>
 				</div>

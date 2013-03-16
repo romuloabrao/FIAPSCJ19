@@ -11,20 +11,29 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Manutenção de Especialidades Médicas</legend>
+				
 				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
+					<p:outputLabel styleClass="control-label" for="nome"
+						value="Nome:" />
 					<div class="controls">
-						<p:inputText disabled="true" id="id"
-							value="#{formEspecialiadeMB.especialidade.codigo}" required="true"
-							label="Codigo" />
+						<p:inputText id="nome" value="#{especialiadeMB.especialidade.nome}"
+							required="#{empty param['skipValidation']}" label="Nome" />
 					</div>
 				</div>
+
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="#{formEspecialiadeMB.acao}"
-							actionListener="#{formEspecialiadeMB.salvar}" ajax="false"/>
+						<h:commandButton styleClass="btn" action="viewatendente"
+							actionListener="#{atendenteMB.salvar}"
+							value="#{atendenteMB.acao}" ajax="false" />
+						<h:commandButton styleClass="btn" action="viewatendente"
+							actionListener="#{atendenteMB.voltar}" value="voltar"
+							ajax="false">
+							<f:param name="skipValidation" value="true" />
+						</h:commandButton>
 					</div>
 				</div>
+
 			</fieldset>
 		</h:form>
 	</ui:define>

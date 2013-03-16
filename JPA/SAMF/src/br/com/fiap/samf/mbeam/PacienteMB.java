@@ -10,14 +10,14 @@ import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
 import br.com.fiap.samf.model.Paciente;
-import br.com.fiap.samf.util.SessionDocManager;
+import br.com.fiap.samf.util.SessionManager;
 
-@ManagedBean(name="FormPacienteMB")
+@ManagedBean
 @RequestScoped
 public class PacienteMB{
 	private Paciente paciente= new Paciente();
-	private List<Paciente> pacientes;
 	private CrudControl<Paciente> control;
+	private List<Paciente> pacientes;
 	
 	public PacienteMB() {
 		control = new GenericCrudControl<Paciente>(Paciente.class);
@@ -36,16 +36,16 @@ public class PacienteMB{
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionDocManager.getSessionDoc();
+		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.getSessionDoc(SessionManager.Beam.DOCITEM);
 		if (doc != null && doc.getClasse().equals(paciente.getClass())) {
 			this.paciente.setCodigo((Long) doc.getCodigo());
-			SessionDocManager.destroySessionDoc();
+			SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
 		}
 		this.control.salvar(this.paciente);
 	}
 	
 	public List<Paciente> getPacientes() {
-		pacientes = pacientes == null? control.listar():pacientes;
+		this.pacientes = this.pacientes == null? this.control.listar(): this.pacientes;
 		return pacientes;
 	}
 	public boolean isNewDoc(){

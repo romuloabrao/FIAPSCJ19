@@ -9,9 +9,9 @@ import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
 import br.com.fiap.samf.model.Convenio;
-import br.com.fiap.samf.util.SessionDocManager;
+import br.com.fiap.samf.util.SessionManager;
 
-@ManagedBean(name="FormConvenioMB")
+@ManagedBean
 @RequestScoped
 public class ConvenioMB {
 	public Convenio convenio=new Convenio();
@@ -30,12 +30,17 @@ public class ConvenioMB {
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionDocManager.getSessionDoc();
+		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.getSessionDoc(SessionManager.Beam.DOCITEM);
 		if (doc != null && doc.getClasse().equals(convenio.getClass())) {
 			this.convenio.setCodigo((Long) doc.getCodigo());
-			SessionDocManager.destroySessionDoc();
+			SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
 		}
 		this.control.salvar(this.convenio);
+	}
+	
+	public String editar() {
+		SessionManager.createSessionDoc(new DocumentSelectedMB(convenio.getClass(), convenio.getCodigo()),SessionManager.Beam.DOCITEM);
+		return "convenios";
 	}
 	
 	public List<Convenio> getConvenios(){

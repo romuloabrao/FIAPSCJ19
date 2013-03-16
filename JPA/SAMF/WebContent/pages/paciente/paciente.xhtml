@@ -15,7 +15,7 @@
 					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
 					<div class="controls">
 						<p:inputText disabled="true" id="id"
-							value="#{formPacienteMB.paciente.codigo}" required="true"
+							value="#{pacienteMB.paciente.codigo}" required="true"
 							label="Codigo" />
 					</div>
 				</div>
@@ -23,21 +23,21 @@
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
-						<h:inputText id="nome" value="#{formPacienteMB.paciente.nome}"
+						<h:inputText id="nome" value="#{pacienteMB.paciente.nome}"
 							required="true" label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="rg" value="R.G:" />
 					<div class="controls">
-						<h:inputText id="rg" value="#{formPacienteMB.paciente.rg}"
+						<h:inputText id="rg" value="#{pacienteMB.paciente.rg}"
 							required="true" label="R.G" />
 					</div>
 				</div>
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="cpf" value="C.P.F:" />
 					<div class="controls">
-						<h:inputText id="cpf" value="#{formPacienteMB.paciente.cpf}"
+						<h:inputText id="cpf" value="#{pacienteMB.paciente.cpf}"
 							required="true" label="C.P.F" />
 					</div>
 				</div>
@@ -45,11 +45,11 @@
 					<p:outputLabel styleClass="control-label" for="convenio"
 						value="Selecione o Convenio" />
 					<div class="controls">
-						<h:selectOneMenu value="#{formPacienteMB.paciente.convenio}"
+						<h:selectOneMenu value="#{pacienteMB.paciente.convenio}"
 							id="convenio" required="false" label="Convenio"
 							converter="samf.ConvenioConverter">
 							<f:selectItem itemLabel="Selecione" itemValue="" />
-							<f:selectItems value="#{formConvenioMB.convenios}" var="convenio"
+							<f:selectItems value="#{convenioMB.convenios}" var="convenio"
 								itemLabel="#{convenio.nome}" itemValue="#{convenio}" />
 						</h:selectOneMenu>
 					</div>
@@ -57,8 +57,8 @@
 				<div class="control-group">
 					<div class="controls">
 						<h:commandButton styleClass="btn" action="aluno"
-							value="#{formConvenioMB.acao}"
-							actionListener="#{formPacienteMB.salvar}">
+							value="#{pacienteMB.acao}"
+							actionListener="#{pacienteMB.salvar}">
 						</h:commandButton>
 					</div>
 				</div>

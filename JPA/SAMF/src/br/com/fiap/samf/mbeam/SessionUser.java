@@ -2,10 +2,13 @@ package br.com.fiap.samf.mbeam;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+
 import br.com.fiap.samf.control.impl.UsuarioControl;
+import br.com.fiap.samf.model.Atendente;
+import br.com.fiap.samf.model.Medico;
 import br.com.fiap.samf.model.Usuario;
 
-@ManagedBean(name="SessionUser")
+@ManagedBean
 @SessionScoped
 public class SessionUser {
 	private Usuario user = new Usuario();
@@ -26,5 +29,10 @@ public class SessionUser {
 	
 	public String getNomeCargo(){
 		return user.getClass().getSimpleName();
+	}
+	
+	public boolean isLoggedIn(){
+		return (user instanceof Medico || user instanceof Atendente);
+		//return(user != null);
 	}
 }

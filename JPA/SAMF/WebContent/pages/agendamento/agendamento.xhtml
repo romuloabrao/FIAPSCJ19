@@ -1,41 +1,101 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://java.sun.com/jsp/jstl/core"> 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="../template/layout.xhtml">
 	<ui:define name="contentComponent">
 		<h:form styleClass="form-horizontal">
 			<fieldset>
-				<legend>ManutenÃ§Ã£o de Agendamento</legend>
-				
-				
+				<legend>Manutenção de Agendamento</legend>
 
-				
-				
 				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
+					<h:outputLabel styleClass="control-label" for="nomeAtendente"
+						value="Nome do Atendente:" />
 					<div class="controls">
-						<p:inputText id="nome" value="#{}"
-							required="true" label="Nome" />
+						<h:inputText disabled="true" id="nomeAtendente"
+							value="#{agendamentoMB.agendamento.atendente.nome}" label="Nome" />
 					</div>
 				</div>
-				
+
 				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="rg" value="RG:" />
+					<h:outputLabel styleClass="control-label" for="dataAgend"
+						value="Data do Agendamento" />
 					<div class="controls">
-						<p:inputText id="rg" value="#{}"
-							required="true" label="RG" />
+						<p:calendar id="dataAgend"
+							value="#{agendamentoMB.agendamento.data}" pattern="dd/MM/yyyy" />
 					</div>
 				</div>
-				
+
+				<div class="control-group">
+					<h:outputLabel styleClass="control-label" for="paciente"
+						value="Paciente:" />
+					<div class="controls">
+						<h:selectOneMenu id="paciente"
+							value="#{agendamentoMB.agendamento.paciente}"
+							converter="samf.PacienteConverter">
+							<f:selectItem itemLabel="Selecione o Paciente" itemValue="" />
+							<f:selectItems value="#{pacienteMB.pacientes}" var="paciente"
+								itemLabel="#{paciente.nome}" itemValue="#{paciente}" />
+							<f:ajax event="change" render="convenioNome"
+								listener="#{agendamentoMB.handleConvenio}" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<h:outputLabel styleClass="control-label" for="convenioNome"
+						value="Convenio do Paciente:" />
+					<div class="controls">
+						<h:inputText id="convenioNome" disabled="true"
+							value="#{agendamentoMB.agendamento.convenio.nome}" label="Nome" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<h:outputLabel styleClass="control-label" for="especialidade"
+						value="Atendimento" />
+					<div class="controls">
+						<h:selectOneMenu id="especialidade"
+							value="#{agendamentoMB.campoEspecialidade}"
+							converter="samf.EspecialidadeConverter">
+							<f:selectItem itemLabel="Selecione o Tipo" itemValue="" />
+							<f:selectItems value="#{especialiadeMB.especialidades}"
+								var="especialidade" itemLabel="#{especialidade.nome}"
+								itemValue="#{especialidade}" />
+							<f:ajax event="change" render="medico"
+								listener="#{agendamentoMB.handleListMedico}" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<h:outputLabel styleClass="control-label" for="medico"
+						value="Medico" />
+					<div class="controls">
+						<h:selectOneMenu id="medico"
+							value="#{agendamentoMB.agendamento.medico}"
+							converter="samf.MedicoConverter">
+							<f:selectItem itemLabel="Selecione o Medico" itemValue="" />
+							<f:selectItems value="#{agendamentoMB.campoMedico}" var="medico"
+								itemLabel="#{medico.nome}" itemValue="#{medico}" />
+						</h:selectOneMenu>
+					</div>
+				</div>
+
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="Salvar" action="atendente"
-							actionListener="#{formAgendamentoMB.salvar}" ajax="false" />
+						<h:commandButton styleClass="btn" action="viewatendente"
+							actionListener="#{agendamentoMB.salvar}"
+							value="#{agendamentoMB.acao}" ajax="false" />
+						<h:commandButton styleClass="btn" action="viewatendente"
+							actionListener="#{agendamentoMB.voltar}" value="voltar"
+							ajax="false">
+							<f:param name="skipValidation" value="true" />
+						</h:commandButton>
 					</div>
 				</div>
 

@@ -9,8 +9,8 @@ import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
 import br.com.fiap.samf.model.Medicamento;
-import br.com.fiap.samf.util.SessionDocManager;
-@ManagedBean(name="FormMedicamentoMB")
+import br.com.fiap.samf.util.SessionManager;
+@ManagedBean
 @RequestScoped
 public class MedicamentoMB {
 	private Medicamento medicamento=new Medicamento();
@@ -29,10 +29,10 @@ public class MedicamentoMB {
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionDocManager.getSessionDoc();
+		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.getSessionDoc(SessionManager.Beam.DOCITEM);
 		if (doc != null && doc.getClasse().equals(medicamento.getClass())) {
 			this.medicamento.setCodigo((Long) doc.getCodigo());
-			SessionDocManager.destroySessionDoc();
+			SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
 		}
 		control.salvar(medicamento);
 	}

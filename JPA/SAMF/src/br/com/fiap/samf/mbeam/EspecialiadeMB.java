@@ -9,9 +9,9 @@ import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
 import br.com.fiap.samf.model.Especialidade;
-import br.com.fiap.samf.util.SessionDocManager;
+import br.com.fiap.samf.util.SessionManager;
 
-@ManagedBean(name="FormEspecialiadeMB")
+@ManagedBean
 @RequestScoped
 public class EspecialiadeMB {
 	private Especialidade especialidade= new Especialidade();
@@ -30,10 +30,10 @@ public class EspecialiadeMB {
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionDocManager.getSessionDoc();
+		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.getSessionDoc(SessionManager.Beam.DOCITEM);
 		if (doc != null && doc.getClasse().equals(especialidade.getClass())) {
 			this.especialidade.setCodigo((Long) doc.getCodigo());
-			SessionDocManager.destroySessionDoc();
+			SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
 		}
 		this.control.salvar(especialidade);
 	}

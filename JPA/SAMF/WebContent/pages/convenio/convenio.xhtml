@@ -15,7 +15,7 @@
 					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
 					<div class="controls">
 						<p:inputText disabled="true" id="id"
-							value="#{formConvenioMB.convenio.codigo}" required="true"
+							value="#{convenioMB.convenio.codigo}" required="true"
 							label="Codigo" />
 					</div>
 				</div>
@@ -23,14 +23,14 @@
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
-						<p:inputText id="nome" value="#{formConvenioMB.convenio.nome}"
+						<p:inputText id="nome" value="#{convenioMB.convenio.nome}"
 							required="true" label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="#{formConvenioMB.acao}"
-							action="convenio" actionListener="#{formConvenioMB.salvar}"
+						<h:commandButton styleClass="btn" value="#{convenioMB.acao}"
+							action="convenio" actionListener="#{convenioMB.salvar}"
 							ajax="false" />
 					</div>
 				</div>

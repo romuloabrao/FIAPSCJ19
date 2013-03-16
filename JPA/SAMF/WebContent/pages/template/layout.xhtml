@@ -21,7 +21,14 @@
 	</div>
 	<div id="mainContent">
 		<section class="clearfix">
-			<ui:insert name="contentComponent" />
+			<div class="span3">
+				<ui:insert name="menuComponent">
+					<ui:include src="menu#{sessionUser.nomeCargo}.xhtml" />
+				</ui:insert>
+			</div>
+			<div class="span9">
+				<ui:insert name="contentComponent" />
+			</div>
 		</section>
 	</div>
 	<footer class="clearfix">

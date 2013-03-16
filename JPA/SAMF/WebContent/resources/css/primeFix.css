@@ -5,3 +5,7 @@
 .ui-helper-hidden {
 	display: none !important;
 }
+
+#menutop > section > .navbar{
+	margin-bottom: 0px;
+}
