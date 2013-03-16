@@ -33,10 +33,10 @@ public class AgendamentoMB {
 	}
 	
 	@PostConstruct
-	public void init(){
+	private void init(){
 		SessionUser su = (SessionUser) SessionManager.getSessionDoc(SessionManager.Beam.SESSION);
 		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
-		this.agendamento = doc !=null? control.buscar((Long) doc.getCodigo()): new Agendamento();
+		this.agendamento = doc !=null && this.agendamento.getClass().equals(doc.getClasse())? control.buscar((Long) doc.getCodigo()): new Agendamento();
 		if( su != null && su.isLoggedIn()){
 			if (this.agendamento.getCodigo() == null){
 				this.agendamento.setAtendente((Atendente)su.getUser());
@@ -53,7 +53,6 @@ public class AgendamentoMB {
 	
 	public String salvar() {
 		control.salvar(agendamento);
-		//Limpa a seção para utilizar.
 		FacesContext.getCurrentInstance().getExternalContext()
 		.getSessionMap().remove("agendamentoMB");
 		return "agendamento";

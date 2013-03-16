@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="../template/layout.xhtml">
+	<ui:define name="contentComponent">
+		<h:form styleClass="form-horizontal">
+			<fieldset>
+				<legend>Lista de Atendendes</legend>
+				<h:messages styleClass="alert alert-success"/>
+				<h:dataTable styleClass="table table-striped"
+					value="#{atendenteMB.atendentes}" var="atend">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="#" />
+						</f:facet>
+						<h:outputText value="#{atend.codigo}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Nome" />
+						</f:facet>
+						<h:outputText value="#{atend.nome}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Registro Geral" />
+						</f:facet>
+						<h:outputText value="#{atend.rg}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Usuario" />
+						</f:facet>
+						<h:outputText value="#{atend.user}" />
+					</h:column>
+
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Operações" />
+						</f:facet>
+						<h:commandLink action="#{atendenteMB.editar}" value="Editar" >
+							<f:setPropertyActionListener target="#{atendenteMB.atend}" value="#{atend}"/>
+						</h:commandLink>
+					</h:column>
+
+				</h:dataTable>
+
+			</fieldset>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

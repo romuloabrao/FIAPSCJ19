@@ -2,24 +2,32 @@ package br.com.fiap.samf.mbeam;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
+import br.com.fiap.samf.model.Atendente;
 import br.com.fiap.samf.model.Convenio;
 import br.com.fiap.samf.util.SessionManager;
 
 @ManagedBean
 @RequestScoped
 public class ConvenioMB {
-	public Convenio convenio=new Convenio();
+	public Convenio convenio;
 	public CrudControl<Convenio> control;
 	private List<Convenio> convenios;
 	
 	public ConvenioMB() {
 		control = new GenericCrudControl<Convenio>(Convenio.class);
+	}
+	
+	@PostConstruct
+	private void init(){
+		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
+		this.convenio = doc !=null && this.convenio.getClass().equals(doc.getClasse())? control.buscar((Long) doc.getCodigo()): new Convenio();
 	}
 	
 	public void setConvenio(Convenio convenio) {
@@ -30,11 +38,6 @@ public class ConvenioMB {
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.getSessionDoc(SessionManager.Beam.DOCITEM);
-		if (doc != null && doc.getClasse().equals(convenio.getClass())) {
-			this.convenio.setCodigo((Long) doc.getCodigo());
-			SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
-		}
 		this.control.salvar(this.convenio);
 	}
 	

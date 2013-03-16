@@ -2,24 +2,32 @@ package br.com.fiap.samf.mbeam;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
+import br.com.fiap.samf.model.Agendamento;
 import br.com.fiap.samf.model.Atendente;
 import br.com.fiap.samf.util.SessionManager;
 
 @ManagedBean
 @RequestScoped
 public class AtendenteMB {
-	private Atendente atend = new Atendente();
+	private Atendente atend;
 	private List<Atendente> atendentes;
 	private CrudControl<Atendente> control;
 
 	public AtendenteMB() {
 		this.control = new GenericCrudControl<Atendente>(Atendente.class);
+	}
+	
+	@PostConstruct
+	private void init(){
+		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
+		this.atend = doc !=null && this.atend.getClass().equals(doc.getClasse())? control.buscar((Long) doc.getCodigo()): new Atendente();
 	}
 
 	public Atendente getAtend() {
@@ -31,11 +39,6 @@ public class AtendenteMB {
 	}
 
 	public void salvar() {
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.getSessionDoc(SessionManager.Beam.DOCITEM);
-		if (doc != null && doc.getClasse().equals(atend.getClass())) {
-			this.atend.setCodigo((Long) doc.getCodigo());
-			SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
-		}
 		control.salvar(this.atend);
 	}
 

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<section class="userPortrait">
+	<nav class="bs-docs-sidebar">
+		<ul class="nav nav-list bs-docs-sidenav affix-top">
+			<li><h:link id="img"><h2 id="logo#{sessionUser.nomeCargo}"/></h:link></li>
+			<li><h:link><h:outputText value="#{sessionUser.nomeCargo}"/></h:link></li>
+		</ul>
+	</nav>
+</section>
+</html>
