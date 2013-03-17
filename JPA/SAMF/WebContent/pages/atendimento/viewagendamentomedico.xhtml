@@ -60,7 +60,7 @@
 							<h:outputText value="Operações" />
 						</f:facet>
 						<h:commandLink action="#{agendamentoMB.criarAtendimento}" value="CriarAtend" >
-							<f:setPropertyActionListener target="#{agendamentoMB.agendamento}" value="#{agendamento}"/>
+							<f:setPropertyActionListener target="#{atendimentoMB.atendimento.agendamento}" value="#{agendamento}"/>
 						</h:commandLink>
 					</h:column>
 

@@ -10,7 +10,8 @@
 	<ui:define name="contentComponent">
 		<h:form styleClass="form-horizontal">
 			<fieldset>
-				<legend>Lista de Atendendes</legend>
+				<legend>Lista de Paciente</legend>
+				<h:commandLink styleClass="btn" action="paciente" value="Novo Paciente"/>
 				<h:dataTable styleClass="table table-striped"
 					value="#{pacienteMB.pacientes}" var="paciente">
 

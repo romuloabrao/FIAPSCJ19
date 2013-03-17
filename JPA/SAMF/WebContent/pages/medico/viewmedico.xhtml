@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
@@ -10,7 +10,8 @@
 	<ui:define name="contentComponent">
 		<h:form styleClass="form-horizontal">
 			<fieldset>
-				<legend>Lista de Atendendes</legend>
+				<legend>Lista de Médicos</legend>
+				<h:commandLink styleClass="btn" action="medico" value="Novo Medico"/>
 				<h:dataTable styleClass="table table-striped"
 					value="#{medicoMB.medicos}" var="med">
 					

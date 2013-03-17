@@ -5,8 +5,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.GenericCrudControl;
+import br.com.fiap.samf.control.impl.TratamentoControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
 import br.com.fiap.samf.model.Tratamento;
 import br.com.fiap.samf.util.SessionManager;
@@ -17,14 +16,12 @@ import br.com.fiap.samf.util.SessionManager;
 public class TratamentoMB {
 	private Tratamento tratamento=new Tratamento();
 	private List<Tratamento> tratamentos;
-	private CrudControl<Tratamento> control;
+	private TratamentoControl control;
 	
 	public TratamentoMB() {
-		control =new GenericCrudControl<>(Tratamento.class);
+		control = new TratamentoControl();
 	}
-	
 
-	
 	public Tratamento getTratamento() {
 		return tratamento;
 	}

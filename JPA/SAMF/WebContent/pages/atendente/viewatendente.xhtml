@@ -10,6 +10,7 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Lista de Atendendes</legend>
+				<h:commandLink styleClass="btn" action="atendente" value="Novo Atendente"/>
 				<h:messages styleClass="alert alert-success"/>
 				<h:dataTable styleClass="table table-striped"
 					value="#{atendenteMB.atendentes}" var="atend">

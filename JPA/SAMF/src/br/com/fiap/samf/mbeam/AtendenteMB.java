@@ -41,10 +41,6 @@ public class AtendenteMB {
 		SessionManager.createSessionDoc(new DocumentSelectedMB(atend.getClass(), atend.getCodigo()),"atendente");
 		return "atendente";
 	}
-	
-	public void voltar() {
-		SessionManager.destroySessionDoc("atendente");
-	}
 
 	public List<Atendente> getAtendentes() {
 		atendentes = atendentes == null ? this.control.listar() : atendentes;

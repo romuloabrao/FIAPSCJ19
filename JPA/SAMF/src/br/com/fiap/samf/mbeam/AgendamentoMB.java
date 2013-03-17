@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import br.com.fiap.samf.control.CrudControl;
@@ -19,11 +18,12 @@ import br.com.fiap.samf.model.Medico;
 import br.com.fiap.samf.util.SessionManager;
 
 @ManagedBean
-@SessionScoped //Só esta assim por que da pau no f:ajax.... não tem nenhuma lógica
+@SessionScoped //Sï¿½ esta assim por que da pau no f:ajax.... nï¿½o tem nenhuma lï¿½gica
 public class AgendamentoMB {
 	private Agendamento agendamento= new Agendamento();
 	private List<Agendamento> agendamentos;
-	//Itens de menor importancia (só no beam).
+	
+	//Itens de menor importancia (sï¿½ no beam).
 	private Especialidade campoEspecialidade;
 	private List<Medico> campoMedico;
 	CrudControl<Agendamento> control;
@@ -109,7 +109,6 @@ public class AgendamentoMB {
 	}
 	
 	public void limparSessao() {
-		FacesContext.getCurrentInstance().getExternalContext()
-		.getSessionMap().remove("agendamentoMB");
+		SessionManager.destroySessionDoc("agendamentoMB");
 	}
 }

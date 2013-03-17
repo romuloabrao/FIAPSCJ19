@@ -14,7 +14,6 @@ public class TratamentoDAO extends GenericDAO<Tratamento>{
 	}
 
 	public void criar(Tratamento tratamento,List<Convenio> list){
-		tratamento = tratamento.getCodigo()!= null? em.getReference(Tratamento.class, tratamento.getCodigo()):tratamento;
 		for (Convenio conv: list){
 			conv = em.getReference(Convenio.class, conv.getCodigo());
 			conv.getTratamentosAutorizados().add(tratamento);

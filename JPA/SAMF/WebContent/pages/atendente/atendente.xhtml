@@ -11,7 +11,7 @@
 			<h:form styleClass="form-horizontal">
 				<fieldset>
 					<legend>Manutenção de Atendentes</legend>
-					
+
 					<div class="control-group">
 						<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 						<div class="controls">
@@ -19,7 +19,7 @@
 								required="#{empty param['skipValidation']}" label="Nome" />
 						</div>
 					</div>
-					
+
 					<div class="control-group">
 						<p:outputLabel styleClass="control-label" for="rg" value="RG:" />
 						<div class="controls">
@@ -52,8 +52,7 @@
 								actionListener="#{atendenteMB.salvar}"
 								value="#{atendenteMB.acao}" ajax="false" />
 							<h:commandButton styleClass="btn" action="viewatendente"
-								actionListener="#{atendenteMB.voltar}" value="voltar"
-								ajax="false">
+								value="voltar" ajax="false">
 								<f:param name="skipValidation" value="true" />
 							</h:commandButton>
 						</div>

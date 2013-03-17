@@ -52,4 +52,8 @@ public class MedicamentoMB {
 		SessionManager.createSessionDoc(new DocumentSelectedMB(medicamento.getClass(), medicamento.getCodigo()),"medicamento");
 		return "medicamento";
 	}
+
+	public void voltar() {
+		SessionManager.destroySessionDoc("medicamento");
+	}
 }

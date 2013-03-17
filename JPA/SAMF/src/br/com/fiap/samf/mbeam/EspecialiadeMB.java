@@ -55,5 +55,4 @@ public class EspecialiadeMB {
 		SessionManager.createSessionDoc(new DocumentSelectedMB(especialidade.getClass(), especialidade.getCodigo()),"especialidade");
 		return "especialidade";
 	}
-	
 }

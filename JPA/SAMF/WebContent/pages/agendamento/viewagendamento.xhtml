@@ -10,6 +10,7 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Lista de Agendamentos</legend>
+				<h:commandLink styleClass="btn" action="agendamento" value="Novo Agendamento"/>
 				<h:dataTable styleClass="table table-striped"
 					value="#{agendamentoMB.agendamentos}" var="agendamento">
 					

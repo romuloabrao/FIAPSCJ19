@@ -2,16 +2,11 @@ package br.com.fiap.samf.mbeam;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
+import br.com.fiap.samf.model.Atendimento;
 import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
-import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
-import br.com.fiap.samf.model.Agendamento;
-import br.com.fiap.samf.model.Atendimento;
-import br.com.fiap.samf.util.SessionManager;
 
 @ManagedBean
 @RequestScoped
@@ -26,7 +21,7 @@ public class AtendimentoMB {
 	}
 	
 	
-	@PostConstruct
+	/*@PostConstruct
 	private void init(){
 		//TODO Um pouco ARRUMAR
 		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("");
@@ -40,7 +35,7 @@ public class AtendimentoMB {
 		}
 		
 		this.atendimento = doc !=null && Atendimento.class.equals(doc.getClasse())? control.buscar((Long) doc.getCodigo()): new Atendimento();
-	}
+	}*/
 	
 	public void setAtendimento(Atendimento atendimento) {
 		this.atendimento = atendimento;

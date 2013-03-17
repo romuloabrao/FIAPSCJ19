@@ -11,6 +11,7 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Lista de Especialidades</legend>
+				<h:commandLink styleClass="btn" action="especialidade" value="Nova Especialidade"/>
 				<h:dataTable styleClass="table table-striped"
 					value="#{especialiadeMB.especialidades}" var="especialidade">
 					<h:column>

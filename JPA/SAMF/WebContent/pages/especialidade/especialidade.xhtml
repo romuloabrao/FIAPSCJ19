@@ -31,12 +31,11 @@
 
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" action="viewatendente"
-							actionListener="#{atendenteMB.salvar}"
-							value="#{atendenteMB.acao}" ajax="false" />
 						<h:commandButton styleClass="btn" action="viewespecialidade"
-							actionListener="#{atendenteMB.voltar}" value="voltar"
-							ajax="false">
+							actionListener="#{especialiadeMB.salvar}"
+							value="#{especialiadeMB.acao}" ajax="false" />
+						<h:commandButton styleClass="btn" action="viewespecialidade"
+							value="voltar" ajax="false">
 							<f:param name="skipValidation" value="true" />
 						</h:commandButton>
 					</div>
