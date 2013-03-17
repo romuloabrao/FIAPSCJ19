@@ -14,10 +14,18 @@ public class TratamentoDAO extends GenericDAO<Tratamento>{
 	}
 
 	public void criar(Tratamento tratamento,List<Convenio> list){
+		tratamento = tratamento.getCodigo()!= null? em.getReference(Tratamento.class, tratamento.getCodigo()):tratamento;
 		for (Convenio conv: list){
 			conv = em.getReference(Convenio.class, conv.getCodigo());
 			conv.getTratamentosAutorizados().add(tratamento);
 		}
-		em.persist(tratamento);
+		em.merge(tratamento);
+	}
+	
+	public Tratamento buscar(Object id){
+		System.out.println("teste");
+		StringBuffer strb = new StringBuffer();
+		strb.append("LazyTratamentoConvenio");
+		return (Tratamento) em.createNamedQuery(strb.toString()).setParameter("ccodigo", id).getSingleResult();
 	}
 }

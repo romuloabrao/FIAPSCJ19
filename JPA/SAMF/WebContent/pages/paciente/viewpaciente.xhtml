@@ -53,9 +53,8 @@
 						<f:facet name="header">
 							<h:outputText value="Operações" />
 						</f:facet>
-						<h:commandLink action="#{pacienteMB.editar}" value="Editar">
-							<f:setPropertyActionListener target="#{pacienteMB.paciente}"
-								value="#{paciente}" />
+						<h:commandLink action="#{pacienteMB.editar}" value="Editar" >
+							<f:setPropertyActionListener target="#{pacienteMB.paciente}" value="#{paciente}"/>
 						</h:commandLink>
 					</h:column>
 

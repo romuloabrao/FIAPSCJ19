@@ -9,50 +9,57 @@
 	<ui:define name="contentComponent">
 		<h:form styleClass="form-horizontal">
 			<fieldset>
-				<legend>Lista de Atendimento Disponiveis</legend>
+				<legend>Lista de Agendamentos</legend>
 				<h:dataTable styleClass="table table-striped"
-					value="#{atendimentoMB.atendimentos}" var="atendimento">
+					value="#{agendamentoMB.agendamentos}" var="agendamento">
 					
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="#" />
 						</f:facet>
-						<h:outputText value="#{atendimento.codigo}" />
+						<h:outputText value="#{agendamento.codigo}" />
 					</h:column>
 					
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Paciente" />
+							<h:outputText value="Atendente" />
 						</f:facet>
-						<h:outputText value="#{atendimento.agendamento.paciente}" />
+						<h:outputText value="#{agendamento.atendente.nome}" />
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
-							<h:outputText value="Data" />
+							<h:outputText value="Paciente" />
 						</f:facet>
-						<h:outputText value="#{atendimento.agendamento.data}" />
+						<h:outputText value="#{agendamento.paciente.nome}" />
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Convenio" />
 						</f:facet>
-						<h:outputText value="#{atendimento.convenio}" />
+						<h:outputText value="#{agendamento.convenio.nome}" />
 					</h:column>
 					
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Médico" />
 						</f:facet>
-						<h:outputText value="#{atendimento.descr}" />
+						<h:outputText value="#{agendamento.medico.nome}" />
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Data" />
+						</f:facet>
+						<h:outputText value="#{agendamento.data}" converter="javax.faces.DateTime" />
 					</h:column>
 
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Operações" />
 						</f:facet>
-						<h:commandLink action="#{agendamentoMB.editar}" value="Editar" >
+						<h:commandLink action="#{agendamentoMB.criarAtendimento}" value="CriarAtend" >
 							<f:setPropertyActionListener target="#{agendamentoMB.agendamento}" value="#{agendamento}"/>
 						</h:commandLink>
 					</h:column>

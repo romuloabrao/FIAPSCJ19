@@ -43,7 +43,7 @@ public class FilterLogin implements Filter {
 			if(su != null && su.isLoggedIn()){
 				chain.doFilter(request, response);
 			}else{
-				((HttpServletResponse) response).sendRedirect("/SAMF/pages/login");
+				((HttpServletResponse) response).sendRedirect("/SAMF/pages/login.jsf");
 			}
 		}
 		chain.doFilter(request, response);

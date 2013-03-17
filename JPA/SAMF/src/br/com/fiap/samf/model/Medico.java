@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 
 @NamedQuery(
 		name="buscaMedicoPorEspecialidades",
-		query="SELECT m FROM Medico m INNER JOIN m.especialidades e WHERE e.id = :ecodigo")
+		query="SELECT m FROM Medico m INNER JOIN m.especialidades e WHERE e.codigo = :ecodigo")
 @Entity
 @DiscriminatorValue("MEDICO")
 public class Medico extends Usuario {

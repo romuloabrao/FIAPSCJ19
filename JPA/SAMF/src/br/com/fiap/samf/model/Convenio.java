@@ -2,8 +2,6 @@ package br.com.fiap.samf.model;
 
 import java.io.Serializable;
 import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,7 +20,7 @@ public class Convenio implements  Serializable,BaseEntity<Long>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long codigo;
 	private String nome;
-	@ManyToMany(cascade={CascadeType.ALL})
+	@ManyToMany(mappedBy = "listaConvenio")
 	/*@JoinTable(name="ConvenioTratamento",
 				joinColumns={@JoinColumn(name="codigoConvenio",referencedColumnName="codigo")}, 
 				inverseJoinColumns={@JoinColumn(name="codigoTratamento",referencedColumnName="codigo")})*/

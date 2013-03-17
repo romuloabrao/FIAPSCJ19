@@ -15,7 +15,7 @@ public class GenericDAO<T> implements DAO<T> {
 	}
 	
 	@Override
-	public T buscar(long id) {
+	public T buscar(Object id) {
 		return em.find(classe, id);
 	}
 

@@ -5,41 +5,23 @@ import javax.faces.context.FacesContext;
 public class SessionManager {
 
 
-	public static enum Beam {
-		DOCITEM("docItem"), SESSION("sessionUser");
-		private String beam;
-
-		private Beam(String b) {
-			beam = b;
-		}
-
-		public String getBeam() {
-			return beam;
-		}
-		
-		@Override
-		public String toString() {
-			return this.getBeam();
-		}
-	}
-
-	public static Object getSessionDoc(Enum<Beam> b) {
+	public static Object getSessionDoc(String s) {
 		return FacesContext.getCurrentInstance().getExternalContext()
-				.getSessionMap().get(b.toString());
+				.getSessionMap().get(s);
 	}
 
-	public static void createSessionDoc(Object value,Enum<Beam> b) {
-		if (SessionManager.getSessionDoc(b) != null) {
-			SessionManager.destroySessionDoc(b);
+	public static void createSessionDoc(Object value,String s) {
+		if (SessionManager.getSessionDoc(s) != null) {
+			SessionManager.destroySessionDoc(s);
 		}
 		FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
-				.put(b.toString(), value);
+				.put(s, value);
 	}
 
-	public static Object destroySessionDoc(Enum<Beam> b) {
-		if (SessionManager.getSessionDoc(b) != null) {
+	public static Object destroySessionDoc(String s) {
+		if (SessionManager.getSessionDoc(s) != null) {
 			return FacesContext.getCurrentInstance().getExternalContext()
-					.getSessionMap().remove(b.toString());
+					.getSessionMap().remove(s);
 		}
 		return null;
 	}

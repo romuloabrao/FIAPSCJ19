@@ -17,7 +17,7 @@
 					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
 					<div class="controls">
 						<p:inputText disabled="true" id="id"
-							value="#{formMedicoMB.med.codigo}" required="true"
+							value="#{medicoMB.med.codigo}" required="true"
 							label="Codigo" />
 					</div>
 				</div>
@@ -25,7 +25,7 @@
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
-						<p:inputText id="nome" value="#{formMedicoMB.med.nome}"
+						<p:inputText id="nome" value="#{medicoMB.med.nome}"
 							required="true" label="Nome" />
 					</div>
 				</div>
@@ -33,7 +33,7 @@
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="crm" value="CRM:" />
 					<div class="controls">
-						<p:inputText id="crm" value="#{formMedicoMB.med.crm}"
+						<p:inputText id="crm" value="#{medicoMB.med.crm}"
 							required="true" label="CRM" />
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="rg" value="RG:" />
 					<div class="controls">
-						<p:inputText id="rg" value="#{formMedicoMB.med.rg}"
+						<p:inputText id="rg" value="#{medicoMB.med.rg}"
 							required="true" label="RG" />
 					</div>
 				</div>
@@ -50,7 +50,7 @@
 					<p:outputLabel styleClass="control-label" for="usuario"
 						value="Usuario:" />
 					<div class="controls">
-						<p:inputText id="usuario" value="#{formMedicoMB.med.user}"
+						<p:inputText id="usuario" value="#{medicoMB.med.user}"
 							required="true" label="Usuario" />
 					</div>
 				</div>
@@ -59,7 +59,7 @@
 					<p:outputLabel styleClass="control-label" for="senha"
 						value="Senha:" />
 					<div class="controls">
-						<p:inputText id="senha" value="#{formMedicoMB.med.senha}"
+						<p:inputText id="senha" value="#{medicoMB.med.senha}"
 							required="true" label="RG" />
 					</div>
 				</div>
@@ -68,11 +68,11 @@
 					<div class="controls">
 						<p:outputLabel styleClass="help-block" for="especialiades"
 							value="Selecione as Especialidades" />
-						<p:selectManyCheckbox value="#{formMedicoMB.med.especialidades}"
+						<p:selectManyCheckbox value="#{medicoMB.med.especialidades}"
 							id="especialiades" required="false" label="Especialiades"
 							layout="pageDirection" converter="samf.EspecialidadeConverter">
 							<f:selectItems styleClass="checkbox"
-								value="#{formEspecialiadeMB.especialidades}" var="especialidade"
+								value="#{especialiadeMB.especialidades}" var="especialidade"
 								itemLabel="#{especialidade.nome}" itemValue="#{especialidade}" />
 						</p:selectManyCheckbox>
 					</div>
@@ -80,8 +80,8 @@
 
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" action="viewMedico" value="#{formMedicoMB.acao}"
-							actionListener="#{formMedicoMB.salvar}" ajax="false">
+						<h:commandButton styleClass="btn" action="viewmedico" value="#{medicoMB.acao}"
+							actionListener="#{medicoMB.salvar}" ajax="false">
 						</h:commandButton>
 					</div>
 				</div>

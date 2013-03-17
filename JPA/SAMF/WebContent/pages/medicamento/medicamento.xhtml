@@ -15,7 +15,7 @@
 					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
 					<div class="controls">
 						<p:inputText disabled="true" id="id"
-							value="#{formMedicamentoMB.medicamento.codigo}" required="true"
+							value="#{medicamentoMB.medicamento.codigo}" required="true"
 							label="Codigo" />
 					</div>
 				</div>
@@ -24,7 +24,7 @@
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
 						<p:inputText id="nome"
-							value="#{formMedicamentoMB.medicamento.nome}" required="true"
+							value="#{medicamentoMB.medicamento.nome}" required="true"
 							label="Nome" />
 					</div>
 				</div>
@@ -34,7 +34,7 @@
 						value="Valor:" />
 					<div class="controls">
 						<p:inputText id="valor"
-							value="#{formMedicamentoMB.medicamento.valor}" required="true"
+							value="#{medicamentoMB.medicamento.valor}" required="true"
 							label="Nome" />
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 						value="Fabricante:" />
 					<div class="controls">
 						<p:inputText id="fabricante"
-							value="#{formMedicamentoMB.medicamento.fabricante}"
+							value="#{medicamentoMB.medicamento.fabricante}"
 							required="true" label="Nome" />
 					</div>
 				</div>
@@ -52,8 +52,8 @@
 				<div class="control-group">
 					<div class="controls">
 						<h:commandButton styleClass="btn"
-							value="#{formMedicamentoMB.acao}" action="medicamento"
-							actionListener="#{formMedicamentoMB.salvar}" ajax="false">
+							value="#{medicamentoMB.acao}" action="viewmedicamento"
+							actionListener="#{medicamentoMB.salvar}" ajax="false">
 						</h:commandButton>
 					</div>
 				</div>

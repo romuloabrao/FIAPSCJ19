@@ -3,12 +3,12 @@ package br.com.fiap.samf.mbean.utils;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.primefaces.model.DualListModel;  
 
 import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.model.Convenio;
 import br.com.fiap.samf.model.Tratamento;
+
 public class PickListConvenio {  
   
     List<Convenio> itensConveniados = null;  

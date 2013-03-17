@@ -12,12 +12,14 @@
 				<legend>Lista de Agendamentos</legend>
 				<h:dataTable styleClass="table table-striped"
 					value="#{agendamentoMB.agendamentos}" var="agendamento">
+					
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="#" />
 						</f:facet>
 						<h:outputText value="#{agendamento.codigo}" />
 					</h:column>
+					
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Atendente" />
@@ -57,7 +59,7 @@
 						<f:facet name="header">
 							<h:outputText value="Operações" />
 						</f:facet>
-						<h:commandLink action="#{agendamentoMB.editar}" value="Editar" >
+						<h:commandLink action="#{agendamentoMB.editar}" value="Editar"  >
 							<f:setPropertyActionListener target="#{agendamentoMB.agendamento}" value="#{agendamento}"/>
 						</h:commandLink>
 					</h:column>

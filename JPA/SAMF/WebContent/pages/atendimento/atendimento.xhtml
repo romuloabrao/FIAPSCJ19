@@ -10,14 +10,32 @@
 	<ui:define name="contentComponent">
 		<h:form styleClass="form-horizontal">
 			<fieldset>
-				<legend>Manutenção de Agendamento</legend>
+				<legend>Manutenção de Atendimento</legend>
 
 				<div class="control-group">
 					<h:outputLabel styleClass="control-label" for="nomeAtendente"
 						value="Nome do Atendente:" />
 					<div class="controls">
-						<p:inputText disabled="true" id="nomeAtendente"
-							value="#{atendimentoMB.}" label="Nome" />
+						<p:inputText id="nomeAtendente" disabled="true"
+							value="#{atendimentoMB.atendimento.agendamento.paciente.nome}" label="Nome" />
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<h:outputLabel styleClass="control-label" for="convenio"
+						value="Convenio:" />
+					<div class="controls">
+						<p:inputText id="convenio" disabled="true"
+							value="#{atendimentoMB.atendimento.agendamento.convenio.nome}" label="Convenio" />
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<h:outputLabel styleClass="control-label" for="descr"
+						value="Descricao:" />
+					<div class="controls">
+						<h:inputText id="descr"
+							value="#{atendimentoMB.atendimento.descr}" label="Descricao" />
 					</div>
 				</div>
 

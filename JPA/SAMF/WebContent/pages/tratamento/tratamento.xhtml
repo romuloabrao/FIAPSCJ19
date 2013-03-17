@@ -16,7 +16,7 @@
 					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
 					<div class="controls">
 						<p:inputText disabled="true" id="id" 
-							value="#{formTratamentoMB.tratamento.codigo}" required="true"
+							value="#{tratamentoMB.tratamento.codigo}" required="true"
 							label="Codigo" />
 					</div>
 				</div>
@@ -25,10 +25,10 @@
 						value="Especialidade" />
 					<div class="controls">
 						<h:selectOneMenu
-							value="#{formTratamentoMB.tratamento.especialidade}"
+							value="#{tratamentoMB.tratamento.especialidade}"
 							id="convenio" required="true" label="Especialidade"
 							converter="samf.EspecialidadeConverter">
-							<f:selectItems value="#{viewEspecialidadeMB.especialidades}"
+							<f:selectItems value="#{especialiadeMB.especialidades}"
 								var="especialidade" itemLabel="#{especialidade.nome}"
 								itemValue="#{especialidade}" />
 						</h:selectOneMenu>
@@ -38,36 +38,36 @@
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
-						<p:inputText id="nome" value="#{formTratamentoMB.tratamento.nome}"
+						<p:inputText id="nome" value="#{tratamentoMB.tratamento.nome}"
 							required="true" label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="vlr" value="Valor:" />
 					<div class="controls">
-						<p:inputText id="vlr" value="#{formTratamentoMB.tratamento.valor}"
+						<p:inputText id="vlr" value="#{tratamentoMB.tratamento.valor}"
 							required="true" label="Valor" />
 					</div>
 				</div>
 
-
-
 				<div class="control-group">
 					<div class="controls">
-						<p:pickList id="pickListConvenios"
-							value="#{formTratamentoMB.pKconvenios.convenios}" var="convenio"
-							itemLabel="#{convenio.nome}" itemValue="#{convenio}"
-							converter="samf.ConvenioConverter">
-							<f:facet name="sourceCaption">Convenios Suportados</f:facet>
-							<f:facet name="targetCaption">Não Suportados</f:facet>
-						</p:pickList>
+						<p:outputLabel styleClass="help-block" for="convenios"
+							value="Selecione os Convenios" />
+						<p:selectManyMenu showCheckbox="true" value="#{tratamentoMB.tratamento.listaConvenio}"
+							id="convenios" required="false" label="Especialiades"
+							layout="pageDirection" converter="samf.ConvenioConverter">
+							<f:selectItems styleClass="checkbox"
+								value="#{convenioMB.convenios}" var="convenio"
+								itemLabel="#{convenio.nome}" itemValue="#{convenio}" />
+						</p:selectManyMenu>
 					</div>
 				</div>
 
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" value="#{formTratamentoMB.acao}"
-							actionListener="#{formTratamentoMB.salvar}" ajax="false">
+						<h:commandButton styleClass="btn" value="#{tratamentoMB.acao}" action="viewtratamento"
+							actionListener="#{tratamentoMB.salvar}" ajax="false">
 						</h:commandButton>
 					</div>
 				</div>
@@ -75,6 +75,7 @@
 
 			</fieldset>
 		</h:form>
+		<ui:include src="viewtratamento.xhtml" />
 	</ui:define>
 </ui:composition>
 </html>

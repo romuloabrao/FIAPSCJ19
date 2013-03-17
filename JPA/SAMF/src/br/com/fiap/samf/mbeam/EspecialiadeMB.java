@@ -2,32 +2,24 @@ package br.com.fiap.samf.mbeam;
 
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
-import br.com.fiap.samf.model.Convenio;
 import br.com.fiap.samf.model.Especialidade;
 import br.com.fiap.samf.util.SessionManager;
 
 @ManagedBean
 @RequestScoped
 public class EspecialiadeMB {
-	private Especialidade especialidade;
+	private Especialidade especialidade=new Especialidade();
 	private CrudControl<Especialidade> control;
 	private List<Especialidade> especialidades;
 	
 	public EspecialiadeMB() {
 		this.control =new GenericCrudControl<Especialidade>(Especialidade.class);
-	}
-	
-	@PostConstruct
-	private void init(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
-		this.especialidade = doc !=null && this.especialidade.getClass().equals(doc.getClasse())? control.buscar((Long) doc.getCodigo()): new Especialidade();
 	}
 	
 	public void setEspecialidade(Especialidade especialidade) {
@@ -39,6 +31,10 @@ public class EspecialiadeMB {
 	}
 	
 	public void salvar(){
+		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("especialidade");
+		if (doc != null && doc.getClasse().equals(Especialidade.class)) {
+			this.especialidade.setCodigo((Long) doc.getCodigo());
+		}
 		this.control.salvar(especialidade);
 	}
 	
@@ -53,6 +49,11 @@ public class EspecialiadeMB {
 	
 	public String getAcao(){
 		return this.isNewDoc()?"Salvar":"Atualizar";
+	}
+	
+	public String editar() {
+		SessionManager.createSessionDoc(new DocumentSelectedMB(especialidade.getClass(), especialidade.getCodigo()),"especialidade");
+		return "especialidade";
 	}
 	
 }

@@ -11,6 +11,14 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Manutenção de Especialidades Médicas</legend>
+				<div class="control-group">
+					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
+					<div class="controls">
+						<p:inputText disabled="true" id="id"
+							value="#{especialiadeMB.especialidade.codigo}"
+							label="Codigo" />
+					</div>
+				</div>
 				
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome"
@@ -26,7 +34,7 @@
 						<h:commandButton styleClass="btn" action="viewatendente"
 							actionListener="#{atendenteMB.salvar}"
 							value="#{atendenteMB.acao}" ajax="false" />
-						<h:commandButton styleClass="btn" action="viewatendente"
+						<h:commandButton styleClass="btn" action="viewespecialidade"
 							actionListener="#{atendenteMB.voltar}" value="voltar"
 							ajax="false">
 							<f:param name="skipValidation" value="true" />

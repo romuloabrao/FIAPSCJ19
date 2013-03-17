@@ -21,7 +21,7 @@ import br.com.fiap.samf.util.SessionManager;
 @ManagedBean
 @SessionScoped //Só esta assim por que da pau no f:ajax.... não tem nenhuma lógica
 public class AgendamentoMB {
-	private Agendamento agendamento;
+	private Agendamento agendamento= new Agendamento();
 	private List<Agendamento> agendamentos;
 	//Itens de menor importancia (só no beam).
 	private Especialidade campoEspecialidade;
@@ -34,10 +34,8 @@ public class AgendamentoMB {
 	
 	@PostConstruct
 	private void init(){
-		SessionUser su = (SessionUser) SessionManager.getSessionDoc(SessionManager.Beam.SESSION);
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc(SessionManager.Beam.DOCITEM);
-		this.agendamento = doc !=null && this.agendamento.getClass().equals(doc.getClasse())? control.buscar((Long) doc.getCodigo()): new Agendamento();
-		if( su != null && su.isLoggedIn()){
+		SessionUser su = (SessionUser) SessionManager.getSessionDoc("sessionUser");
+		if( su != null && su.isLoggedIn() && su.getUser() instanceof Atendente){
 			if (this.agendamento.getCodigo() == null){
 				this.agendamento.setAtendente((Atendente)su.getUser());
 			}
@@ -52,9 +50,12 @@ public class AgendamentoMB {
 	}
 	
 	public String salvar() {
-		control.salvar(agendamento);
-		FacesContext.getCurrentInstance().getExternalContext()
-		.getSessionMap().remove("agendamentoMB");
+		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("agendamento");
+		if (doc != null && doc.getClasse().equals(Agendamento.class)) {
+			this.agendamento.setCodigo((Long) doc.getCodigo());
+		}
+		this.control.salvar(agendamento);
+		SessionManager.destroySessionDoc("agendamentoMB");
 		return "agendamento";
 	}
 	
@@ -97,7 +98,18 @@ public class AgendamentoMB {
 	}
 
 	public String editar() {
-		SessionManager.createSessionDoc(new DocumentSelectedMB(this.agendamento.getClass(), this.agendamento.getCodigo()), SessionManager.Beam.DOCITEM);
+		SessionManager.createSessionDoc(new DocumentSelectedMB(this.agendamento.getClass(), this.agendamento.getCodigo()), "agendamento");
 		return "agendamento";
+	}
+	
+	public String criarAtendimento() {
+		SessionManager.createSessionDoc(new DocumentSelectedMB(this.agendamento.getClass(), this.agendamento.getCodigo()), "agendamento");
+		limparSessao();
+		return "atendimento";
+	}
+	
+	public void limparSessao() {
+		FacesContext.getCurrentInstance().getExternalContext()
+		.getSessionMap().remove("agendamentoMB");
 	}
 }

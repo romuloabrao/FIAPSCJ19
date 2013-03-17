@@ -37,7 +37,6 @@
 						<h:selectOneMenu id="paciente"
 							value="#{agendamentoMB.agendamento.paciente}"
 							converter="samf.PacienteConverter">
-							<f:selectItem itemLabel="Selecione o Paciente" itemValue="" />
 							<f:selectItems value="#{pacienteMB.pacientes}" var="paciente"
 								itemLabel="#{paciente.nome}" itemValue="#{paciente}" />
 							<f:ajax event="change" render="convenioNome"
@@ -62,7 +61,6 @@
 						<h:selectOneMenu id="especialidade"
 							value="#{agendamentoMB.campoEspecialidade}"
 							converter="samf.EspecialidadeConverter">
-							<f:selectItem itemLabel="Selecione o Tipo" itemValue="" />
 							<f:selectItems value="#{especialiadeMB.especialidades}"
 								var="especialidade" itemLabel="#{especialidade.nome}"
 								itemValue="#{especialidade}" />
@@ -79,7 +77,7 @@
 						<h:selectOneMenu id="medico"
 							value="#{agendamentoMB.agendamento.medico}"
 							converter="samf.MedicoConverter">
-							<f:selectItem itemLabel="Selecione o Medico" itemValue="" />
+							<f:selectItem itemLabel="#{agendamentoMB.agendamento.medico.nome}" itemValue="#{agendamentoMB.agendamento.medico}" />
 							<f:selectItems value="#{agendamentoMB.campoMedico}" var="medico"
 								itemLabel="#{medico.nome}" itemValue="#{medico}" />
 						</h:selectOneMenu>
@@ -88,10 +86,10 @@
 
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" action="viewatendente"
+						<h:commandButton styleClass="btn" action="viewagendamento"
 							actionListener="#{agendamentoMB.salvar}"
 							value="#{agendamentoMB.acao}" ajax="false" />
-						<h:commandButton styleClass="btn" action="viewatendente"
+						<h:commandButton styleClass="btn" action="viewagendamento"
 							actionListener="#{agendamentoMB.voltar}" value="voltar"
 							ajax="false">
 							<f:param name="skipValidation" value="true" />

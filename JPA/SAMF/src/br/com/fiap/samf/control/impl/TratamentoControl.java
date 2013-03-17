@@ -12,9 +12,9 @@ public class TratamentoControl extends GenericCrudControl<Tratamento>{
 		super(Tratamento.class,TratamentoDAO.class);
 	}
 	
-	public void criar(Tratamento tratamento,List<Convenio> list){
+	public void salvar(Tratamento tratamento){
 		em.getTransaction().begin();
-		((TratamentoDAO)dao).criar(tratamento,list);
+		((TratamentoDAO)dao).criar(tratamento,(List<Convenio>) tratamento.getListaConvenio());
 		em.getTransaction().commit();
 	}
 

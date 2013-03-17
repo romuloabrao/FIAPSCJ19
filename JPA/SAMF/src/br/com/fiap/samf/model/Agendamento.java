@@ -3,11 +3,17 @@ package br.com.fiap.samf.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 
+@NamedQuery(
+		name="buscaAgendamentoPorMedico",
+		query="SELECT ag FROM Agendamento ag INNER JOIN ag.medico m WHERE m.codigo = :mcodigo")
 @Entity
 public class Agendamento implements BaseEntity<Long> {
 	/**
@@ -17,15 +23,17 @@ public class Agendamento implements BaseEntity<Long> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long codigo;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Atendente atendente;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Medico medico;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Paciente paciente;
 	private Date data;
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.EAGER)
 	private Convenio convenio;
+	@OneToOne(mappedBy="agendamento")
+	private Atendimento atendimento;
 
 	public Long getCodigo() {
 		return codigo;
@@ -73,6 +81,14 @@ public class Agendamento implements BaseEntity<Long> {
 
 	public void setConvenio(Convenio convenio) {
 		this.convenio = convenio;
+	}
+	
+	public Atendimento getAtendimento() {
+		return atendimento;
+	}
+	
+	public void setAtendimento(Atendimento atendimento) {
+		this.atendimento = atendimento;
 	}
 
 	@Override
