@@ -11,34 +11,29 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Manutenção Paciente</legend>
-				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
-					<div class="controls">
-						<p:inputText disabled="true" id="id"
-							value="#{pacienteMB.paciente.codigo}" required="true"
-							label="Codigo" />
-					</div>
-				</div>
+
+
+				<h:inputHidden value="#{pacienteMB.paciente.codigo}" />
 
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
 						<h:inputText id="nome" value="#{pacienteMB.paciente.nome}"
-							required="true" label="Nome" />
+							required="#{empty param['skipValidation']}" label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="rg" value="R.G:" />
 					<div class="controls">
 						<h:inputText id="rg" value="#{pacienteMB.paciente.rg}"
-							required="true" label="R.G" />
+							required="#{empty param['skipValidation']}" label="R.G" />
 					</div>
 				</div>
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="cpf" value="C.P.F:" />
 					<div class="controls">
 						<h:inputText id="cpf" value="#{pacienteMB.paciente.cpf}"
-							required="true" label="C.P.F" />
+							required="#{empty param['skipValidation']}" label="C.P.F" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -57,8 +52,11 @@
 				<div class="control-group">
 					<div class="controls">
 						<h:commandButton styleClass="btn" action="viewpaciente"
-							value="#{pacienteMB.acao}"
-							actionListener="#{pacienteMB.salvar}">
+							value="#{pacienteMB.acao}" actionListener="#{pacienteMB.salvar}">
+						</h:commandButton>
+						<h:commandButton styleClass="btn" action="viewpaciente"
+							value="voltar" ajax="false">
+							<f:param name="skipValidation" value="true" />
 						</h:commandButton>
 					</div>
 				</div>

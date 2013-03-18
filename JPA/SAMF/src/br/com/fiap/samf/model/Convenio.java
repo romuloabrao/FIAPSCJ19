@@ -20,12 +20,6 @@ public class Convenio implements  Serializable,BaseEntity<Long>{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long codigo;
 	private String nome;
-	@ManyToMany(mappedBy = "listaConvenio")
-	/*@JoinTable(name="ConvenioTratamento",
-				joinColumns={@JoinColumn(name="codigoConvenio",referencedColumnName="codigo")}, 
-				inverseJoinColumns={@JoinColumn(name="codigoTratamento",referencedColumnName="codigo")})*/
-	private Collection<Tratamento> tratamentosAutorizados;
-	
 	
 	public Long getCodigo() {
 		return codigo;
@@ -38,14 +32,6 @@ public class Convenio implements  Serializable,BaseEntity<Long>{
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-	
-	public void setTratamentosAutorizados(Collection<Tratamento> tratamentosAutorizados) {
-		this.tratamentosAutorizados = tratamentosAutorizados;
-	}
-	
-	public Collection<Tratamento> getTratamentosAutorizados() {
-		return tratamentosAutorizados;
 	}
 	
 	@Override

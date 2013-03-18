@@ -4,11 +4,8 @@ package br.com.fiap.samf.mbeam;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-
 import br.com.fiap.samf.control.impl.TratamentoControl;
-import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
 import br.com.fiap.samf.model.Tratamento;
-import br.com.fiap.samf.util.SessionManager;
 
 
 @ManagedBean
@@ -31,9 +28,8 @@ public class TratamentoMB {
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("tratamento");
-		if (doc != null && doc.getClasse().equals(Tratamento.class)) {
-			this.tratamento.setCodigo((Long) doc.getCodigo());
+		if(tratamento.getCodigo().longValue()==0){
+			tratamento.setCodigo(null);
 		}
 		control.salvar(tratamento);
 	}
@@ -52,7 +48,6 @@ public class TratamentoMB {
 	}
 	
 	public String editar() {
-		SessionManager.createSessionDoc(new DocumentSelectedMB(tratamento.getClass(), tratamento.getCodigo()),"tratamento");
 		return "tratamento";
 	}
 	

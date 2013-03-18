@@ -30,16 +30,13 @@ public class ConvenioMB {
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("convenio");
-		if (doc != null && doc.getClasse().equals(Convenio.class)) {
-			this.convenio.setCodigo((Long) doc.getCodigo());
+		if(convenio.getCodigo().longValue()==0){
+			convenio.setCodigo(null);
 		}
-		control.salvar(convenio);
 		this.control.salvar(this.convenio);
 	}
 	
 	public String editar() {
-		SessionManager.createSessionDoc(new DocumentSelectedMB(convenio.getClass(), convenio.getCodigo()),"convenio");
 		return "convenio";
 	}
 	

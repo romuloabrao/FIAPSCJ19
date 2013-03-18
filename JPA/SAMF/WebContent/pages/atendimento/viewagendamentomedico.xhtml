@@ -11,7 +11,7 @@
 			<fieldset>
 				<legend>Lista de Agendamentos</legend>
 				<h:dataTable styleClass="table table-striped"
-					value="#{agendamentoMB.agendamentos}" var="agendamento">
+					value="#{agendamentoMB.agendamentosDisponiveis}" var="agendamento">
 					
 					<h:column>
 						<f:facet name="header">
@@ -60,7 +60,10 @@
 							<h:outputText value="Operações" />
 						</f:facet>
 						<h:commandLink action="#{agendamentoMB.criarAtendimento}" value="CriarAtend" >
+							<f:param name="agendamento" value="#{agendamento}"/>
 							<f:setPropertyActionListener target="#{atendimentoMB.atendimento.agendamento}" value="#{agendamento}"/>
+							<f:setPropertyActionListener target="#{atendimentoMB.atendimento.medicamentos}" value="#{agendamentoMB.atendMedicamento}"/>
+							<f:setPropertyActionListener target="#{atendimentoMB.atendimento.tratamentos}" value="#{agendamentoMB.atendTratamento}"/>
 						</h:commandLink>
 					</h:column>
 

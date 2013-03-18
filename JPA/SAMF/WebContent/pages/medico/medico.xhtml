@@ -13,36 +13,29 @@
 				<legend>Manutenção de Médicos</legend>
 
 
-				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
-					<div class="controls">
-						<p:inputText disabled="true" id="id"
-							value="#{medicoMB.med.codigo}" required="true"
-							label="Codigo" />
-					</div>
-				</div>
+				<h:inputHidden id="codigo" value="#{medicoMB.med.codigo}" />
 
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
 						<p:inputText id="nome" value="#{medicoMB.med.nome}"
-							required="true" label="Nome" />
+							required="#{empty param['skipValidation']}" label="Nome" />
 					</div>
 				</div>
 
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="crm" value="CRM:" />
 					<div class="controls">
-						<p:inputText id="crm" value="#{medicoMB.med.crm}"
-							required="true" label="CRM" />
+						<p:inputText id="crm" value="#{medicoMB.med.crm}" required="#{empty param['skipValidation']}"
+							label="CRM" />
 					</div>
 				</div>
 
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="rg" value="RG:" />
 					<div class="controls">
-						<p:inputText id="rg" value="#{medicoMB.med.rg}"
-							required="true" label="RG" />
+						<p:inputText id="rg" value="#{medicoMB.med.rg}" required="#{empty param['skipValidation']}"
+							label="RG" />
 					</div>
 				</div>
 
@@ -51,7 +44,7 @@
 						value="Usuario:" />
 					<div class="controls">
 						<p:inputText id="usuario" value="#{medicoMB.med.user}"
-							required="true" label="Usuario" />
+							required="#{empty param['skipValidation']}" label="Usuario" />
 					</div>
 				</div>
 
@@ -59,8 +52,8 @@
 					<p:outputLabel styleClass="control-label" for="senha"
 						value="Senha:" />
 					<div class="controls">
-						<p:inputText id="senha" value="#{medicoMB.med.senha}"
-							required="true" label="RG" />
+						<h:inputSecret id="senha" value="#{medicoMB.med.senha}"
+							required="#{empty param['skipValidation']}" label="RG" />
 					</div>
 				</div>
 
@@ -69,7 +62,7 @@
 						<p:outputLabel styleClass="help-block" for="especialiades"
 							value="Selecione as Especialidades" />
 						<p:selectManyCheckbox value="#{medicoMB.med.especialidades}"
-							id="especialiades" required="false" label="Especialiades"
+							id="especialiades" required="#{empty param['skipValidation']}" label="Especialiades"
 							layout="pageDirection" converter="samf.EspecialidadeConverter">
 							<f:selectItems styleClass="checkbox"
 								value="#{especialiadeMB.especialidades}" var="especialidade"
@@ -80,8 +73,13 @@
 
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn" action="viewmedico" value="#{medicoMB.acao}"
-							actionListener="#{medicoMB.salvar}" ajax="false">
+						<h:commandButton styleClass="btn" action="viewmedico"
+							value="#{medicoMB.acao}" actionListener="#{medicoMB.salvar}"
+							ajax="false">
+						</h:commandButton>
+						<h:commandButton styleClass="btn" action="viewmedico"
+							value="voltar" ajax="false">
+							<f:param name="skipValidation" value="true" />
 						</h:commandButton>
 					</div>
 				</div>

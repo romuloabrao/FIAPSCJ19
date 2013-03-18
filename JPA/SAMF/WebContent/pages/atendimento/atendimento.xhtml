@@ -11,36 +11,158 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Manutenção de Atendimento</legend>
+				<h:inputHidden value="#{atendimentoMB.atendimento.codigo}" />
+				
+				<h:inputHidden immediately="true" value="#{atendimentoMB.atendimento.agendamento.codigo}"/>
 
+				
 				<div class="control-group">
 					<h:outputLabel styleClass="control-label" for="nomeAtendente"
 						value="Nome do Atendente:" />
 					<div class="controls">
 						<p:inputText id="nomeAtendente" disabled="true"
-							value="#{atendimentoMB.atendimento.agendamento.paciente.nome}" label="Nome" />
+							value="#{atendimentoMB.atendimento.agendamento.atendente.nome}"
+							label="Nome" />
 					</div>
 				</div>
-				
+
 				<div class="control-group">
-					<h:outputLabel styleClass="control-label" for="convenio"
+					<h:outputLabel styleClass="control-label" for="nomePaciente"
+						value="Paciente" />
+					<div class="controls">
+						<p:inputText id="nomePaciente" disabled="true"
+							value="#{atendimentoMB.atendimento.agendamento.paciente.nome}"
+							label="Paciente" />
+					</div>
+				</div>
+
+				<div class="control-group">
+					<h:outputLabel styleClass="control-label" for="nomeConvenio"
 						value="Convenio:" />
 					<div class="controls">
-						<p:inputText id="convenio" disabled="true"
-							value="#{atendimentoMB.atendimento.agendamento.convenio.nome}" label="Convenio" />
+						<p:inputText id="nomeConvenio" disabled="true"
+							value="#{atendimentoMB.atendimento.agendamento.convenio.nome}"
+							label="Convenio" />
 					</div>
 				</div>
-				
+
+				<div class="control-group">
+					<h:outputLabel styleClass="control-label" for="dataAgendamento"
+						value="Data:" />
+					<div class="controls">
+						<p:calendar id="dataAgendamento" disabled="true"
+							value="#{atendimentoMB.atendimento.agendamento.data}" />
+					</div>
+				</div>
+
 				<div class="control-group">
 					<h:outputLabel styleClass="control-label" for="descr"
 						value="Descricao:" />
 					<div class="controls">
-						<h:inputText id="descr"
+						<h:inputTextarea id="descr" required="#{empty param['skipValidation']}"
 							value="#{atendimentoMB.atendimento.descr}" label="Descricao" />
+					</div>
+				</div>
+				
+				<div class="control-group">
+					<div class="controls">
+						<h:commandButton styleClass="btn" action="viewagendamentomedico"
+							actionListener="#{atendimentoMB.salvar}" value="Salvar"
+							ajax="false" />
+						<h:commandButton styleClass="btn" action="viewagendamentomedico"
+							value="voltar" ajax="false">
+							<f:param name="skipValidation" value="true" />
+						</h:commandButton>
 					</div>
 				</div>
 
 			</fieldset>
+
 		</h:form>
+
+			<div id="medicamentoList" class="span4">
+				<h:form>
+					<div class="form-inline">
+						<h:selectOneMenu id="menuMedicamentoItem"
+							converter="samf.MedicamentoConverter">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{medicamentoMB.medicamentos}"
+								var="medicamento" itemLabel="#{medicamento.nome}"
+								itemValue="#{medicamento}" />
+							<f:ajax event="change"
+								listener="#{atendimentoMB.handleMedicamento}" render="@this" />
+						</h:selectOneMenu>
+
+						<h:commandButton styleClass="btn" value=" + ">
+							<f:ajax event="click"
+								listener="#{atendimentoMB.handleListMedicamento}"
+								render="listMedicamento" />
+						</h:commandButton>
+					</div>
+					<p:panel id="listMedicamento">
+						<h:dataTable styleClass="table table-striped table-condensed"
+							value="#{atendimentoMB.atendimento.medicamentos}"
+							var="medicamento">
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#" />
+								</f:facet>
+								<h:outputText value="#{medicamento.codigo}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Medicamento" />
+								</f:facet>
+								<h:outputText value="#{medicamento.nome}" />
+							</h:column>
+						</h:dataTable>
+					</p:panel>
+				</h:form>
+			</div>
+
+			<div id="tratamentoList" class="span4">
+				<h:form>
+					<div class="form-inline">
+						<h:selectOneMenu id="menuTratamento"
+							converter="samf.TratamentoConverter">
+							<f:selectItem itemLabel="Selecione" itemValue="" />
+							<f:selectItems value="#{tratamentoMB.tratamentos}"
+								var="tratamento" itemLabel="#{tratamento.nome}"
+								itemValue="#{tratamento}" />
+							<f:ajax event="change"
+								listener="#{atendimentoMB.handleTratamento}" render="@this" />
+						</h:selectOneMenu>
+
+						<h:commandButton styleClass="btn" value=" + ">
+							<f:ajax event="click"
+								listener="#{atendimentoMB.handleListTratamento}"
+								render="listTratamento" />
+						</h:commandButton>
+					</div>
+					<p:panel id="listTratamento">
+						<h:dataTable styleClass="table table-striped table-condensed"
+							value="#{atendimentoMB.atendimento.tratamentos}" var="tratamento">
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="#" />
+								</f:facet>
+								<h:outputText value="#{tratamento.codigo}" />
+							</h:column>
+
+							<h:column>
+								<f:facet name="header">
+									<h:outputText value="Tratamento" />
+								</f:facet>
+								<h:outputText value="#{tratamento.nome}" />
+							</h:column>
+						</h:dataTable>
+					</p:panel>
+				</h:form>
+			</div>
+
 	</ui:define>
 </ui:composition>
 </html>

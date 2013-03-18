@@ -27,7 +27,7 @@ public class ConvenioConverter implements Converter{
 		if (value != null && value instanceof Convenio){
 			return String.valueOf(((Convenio) value).getCodigo());  
 		}
-		return null;  
+		return "";  
 	}
 
 }

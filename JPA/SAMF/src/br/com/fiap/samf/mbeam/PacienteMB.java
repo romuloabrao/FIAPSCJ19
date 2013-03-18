@@ -36,9 +36,8 @@ public class PacienteMB{
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("paciente");
-		if (doc != null && doc.getClasse().equals(Paciente.class)) {
-			this.paciente.setCodigo((Long) doc.getCodigo());
+		if(paciente.getCodigo().longValue()==0){
+			paciente.setCodigo(null);
 		}
 		this.control.salvar(this.paciente);
 	}
@@ -56,7 +55,6 @@ public class PacienteMB{
 	}
 	
 	public String editar() {
-		SessionManager.createSessionDoc(new DocumentSelectedMB(paciente.getClass(), paciente.getCodigo()),"paciente");
 		return "paciente";
 	}
 }

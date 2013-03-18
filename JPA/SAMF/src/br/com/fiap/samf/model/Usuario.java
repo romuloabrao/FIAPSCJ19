@@ -6,13 +6,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-@NamedQuery(name = "validaUsuario", query = "SELECT u FROM Usuario u WHERE u.user = :uuser AND u.senha= :usenha")
+@NamedQueries({
+		@NamedQuery(name = "validaUsuario", query = "SELECT u FROM Usuario u WHERE u.user = :uuser AND u.senha= :usenha"),
+		@NamedQuery(name = "verificaUsuario", query = "SELECT u FROM Usuario u WHERE u.user = :uuser AND  u.codigo != :ucodigo") })
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipoUsuario")
-public class Usuario implements BaseEntity<Long>{
+public class Usuario implements BaseEntity<Long> {
 
 	/**
 	 * 
@@ -24,8 +27,7 @@ public class Usuario implements BaseEntity<Long>{
 	private String user;
 	private String senha;
 	private String nome;
-	
-	
+
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -53,10 +55,11 @@ public class Usuario implements BaseEntity<Long>{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 	public String getNome() {
 		return nome;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -81,6 +84,5 @@ public class Usuario implements BaseEntity<Long>{
 			return false;
 		return true;
 	}
-	
 
 }

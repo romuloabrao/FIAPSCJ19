@@ -9,9 +9,8 @@ import br.com.fiap.samf.model.Paciente;
 
 public class AtendimentoDAO extends GenericDAO<Atendimento>{
 
-	@SuppressWarnings("unchecked")
 	public AtendimentoDAO(EntityManager em) {
-		super((Class<Atendimento>) new Atendimento().getClass(), em);
+		super(Atendimento.class, em);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -20,5 +19,18 @@ public class AtendimentoDAO extends GenericDAO<Atendimento>{
 		        .setParameter("pcodigo",p.getCodigo())
 		        .getResultList();
 	}
+	
+	public void limpaListaMedicamento(Atendimento at){
+		em.createNativeQuery("DELETE FROM atendimento_medicamento WHERE Atendimento_codigo= ?1 ;")
+		        .setParameter(1,at.getCodigo())
+		        .executeUpdate();
+	}
+	
+	public void limpaListaTratamento(Atendimento at){
+		em.createNativeQuery("DELETE FROM atendimento_tratamento WHERE Atendimento_codigo= ?1 ;")
+		        .setParameter(1,at.getCodigo())
+		        .executeUpdate();
+	}
+	
 
 }

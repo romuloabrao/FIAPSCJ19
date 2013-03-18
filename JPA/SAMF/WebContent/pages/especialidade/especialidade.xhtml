@@ -11,20 +11,14 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Manutenção de Especialidades Médicas</legend>
+
+				<h:inputHidden value="#{especialiadeMB.especialidade.codigo}" />
+
 				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
+					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
-						<p:inputText disabled="true" id="id"
-							value="#{especialiadeMB.especialidade.codigo}"
-							label="Codigo" />
-					</div>
-				</div>
-				
-				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="nome"
-						value="Nome:" />
-					<div class="controls">
-						<p:inputText id="nome" value="#{especialiadeMB.especialidade.nome}"
+						<p:inputText id="nome"
+							value="#{especialiadeMB.especialidade.nome}"
 							required="#{empty param['skipValidation']}" label="Nome" />
 					</div>
 				</div>

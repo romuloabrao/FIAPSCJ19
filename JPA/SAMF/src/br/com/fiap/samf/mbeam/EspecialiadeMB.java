@@ -31,9 +31,8 @@ public class EspecialiadeMB {
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("especialidade");
-		if (doc != null && doc.getClasse().equals(Especialidade.class)) {
-			this.especialidade.setCodigo((Long) doc.getCodigo());
+		if(especialidade.getCodigo().longValue()==0){
+			especialidade.setCodigo(null);
 		}
 		this.control.salvar(especialidade);
 	}
@@ -52,7 +51,6 @@ public class EspecialiadeMB {
 	}
 	
 	public String editar() {
-		SessionManager.createSessionDoc(new DocumentSelectedMB(especialidade.getClass(), especialidade.getCodigo()),"especialidade");
 		return "especialidade";
 	}
 }

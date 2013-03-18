@@ -1,23 +1,18 @@
-
 package br.com.fiap.samf.model;
 
-import java.util.Collection;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-@NamedQuery(
-		name="LazyTratamentoConvenio",
-		query="select t from Tratamento t INNER JOIN t.listaConvenio WHERE t.codigo = :ccodigo")
+
+
 @Entity
 public class Tratamento implements BaseEntity<Long> {
 	/**
-	 * 
+	 *SELECT m FROM Medico m INNER JOIN m.especialidades e WHERE e.codigo = :ecodigo
 	 */
 	private static final long serialVersionUID = 2298977466305464044L;
 	@Id
@@ -27,8 +22,6 @@ public class Tratamento implements BaseEntity<Long> {
 	private String nome;
 	@ManyToOne
 	private Especialidade especialidade;
-	@ManyToMany(cascade={CascadeType.ALL})
-	private Collection<Convenio> listaConvenio;
 
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
@@ -60,14 +53,6 @@ public class Tratamento implements BaseEntity<Long> {
 
 	public Especialidade getEspecialidade() {
 		return especialidade;
-	}
-
-	public void setListaConvenio(Collection<Convenio> listaConvenio) {
-		this.listaConvenio = listaConvenio;
-	}
-
-	public Collection<Convenio> getListaConvenio() {
-		return listaConvenio;
 	}
 
 	@Override

@@ -10,21 +10,14 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Manutenção de Convenios</legend>
-				
-				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
-					<div class="controls">
-						<p:inputText disabled="true" id="id"
-							value="#{convenioMB.convenio.codigo}" required="true"
-							label="Codigo" />
-					</div>
-				</div>
+
+				<h:inputHidden value="#{convenioMB.convenio.codigo}" />
 
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
 						<p:inputText id="nome" value="#{convenioMB.convenio.nome}"
-							required="true" label="Nome" />
+							required="#{empty param['skipValidation']}" label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
@@ -32,6 +25,10 @@
 						<h:commandButton styleClass="btn" value="#{convenioMB.acao}"
 							action="viewconvenio" actionListener="#{convenioMB.salvar}"
 							ajax="false" />
+						<h:commandButton styleClass="btn" action="viewconvenio"
+							value="voltar" ajax="false">
+							<f:param name="skipValidation" value="true" />
+						</h:commandButton>
 					</div>
 				</div>
 

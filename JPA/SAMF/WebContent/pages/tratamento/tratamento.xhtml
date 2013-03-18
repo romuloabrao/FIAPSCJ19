@@ -12,21 +12,14 @@
 			<fieldset>
 				<legend>Manutenção de Tratamentos (consultas/exames)</legend>
 
-				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
-					<div class="controls">
-						<p:inputText disabled="true" id="id" 
-							value="#{tratamentoMB.tratamento.codigo}" required="true"
-							label="Codigo" />
-					</div>
-				</div>
+				<h:inputHidden value="#{tratamentoMB.tratamento.codigo}" />
+
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="convenio"
 						value="Especialidade" />
 					<div class="controls">
-						<h:selectOneMenu
-							value="#{tratamentoMB.tratamento.especialidade}"
-							id="convenio" required="true" label="Especialidade"
+						<h:selectOneMenu value="#{tratamentoMB.tratamento.especialidade}"
+							id="convenio" required="#{empty param['skipValidation']}" label="Especialidade"
 							converter="samf.EspecialidadeConverter">
 							<f:selectItems value="#{especialiadeMB.especialidades}"
 								var="especialidade" itemLabel="#{especialidade.nome}"
@@ -39,35 +32,26 @@
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
 						<p:inputText id="nome" value="#{tratamentoMB.tratamento.nome}"
-							required="true" label="Nome" />
+							required="#{empty param['skipValidation']}" label="Nome" />
 					</div>
 				</div>
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="vlr" value="Valor:" />
 					<div class="controls">
 						<p:inputText id="vlr" value="#{tratamentoMB.tratamento.valor}"
-							required="true" label="Valor" />
+							required="#{empty param['skipValidation']}" label="Valor" />
 					</div>
 				</div>
 
 				<div class="control-group">
 					<div class="controls">
-						<p:outputLabel styleClass="help-block" for="convenios"
-							value="Selecione os Convenios" />
-						<p:selectManyMenu showCheckbox="true" value="#{tratamentoMB.tratamento.listaConvenio}"
-							id="convenios" required="false" label="Especialiades"
-							layout="pageDirection" converter="samf.ConvenioConverter">
-							<f:selectItems styleClass="checkbox"
-								value="#{convenioMB.convenios}" var="convenio"
-								itemLabel="#{convenio.nome}" itemValue="#{convenio}" />
-						</p:selectManyMenu>
-					</div>
-				</div>
-
-				<div class="control-group">
-					<div class="controls">
-						<h:commandButton styleClass="btn" value="#{tratamentoMB.acao}" action="viewtratamento"
-							actionListener="#{tratamentoMB.salvar}" ajax="false">
+						<h:commandButton styleClass="btn" value="#{tratamentoMB.acao}"
+							action="viewtratamento" actionListener="#{tratamentoMB.salvar}"
+							ajax="false">
+						</h:commandButton>
+						<h:commandButton styleClass="btn" action="viewtratamento"
+							value="voltar" ajax="false">
+							<f:param name="skipValidation" value="true" />
 						</h:commandButton>
 					</div>
 				</div>

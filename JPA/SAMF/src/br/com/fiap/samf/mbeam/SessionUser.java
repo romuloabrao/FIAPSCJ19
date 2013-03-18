@@ -4,11 +4,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import br.com.fiap.samf.control.impl.UsuarioControl;
+import br.com.fiap.samf.model.Admin;
 import br.com.fiap.samf.model.Atendente;
 import br.com.fiap.samf.model.Medico;
 import br.com.fiap.samf.model.Usuario;
 
-@ManagedBean
+@ManagedBean(name="sessionUser")
 @SessionScoped
 public class SessionUser {
 	private Usuario user = new Usuario();
@@ -32,7 +33,7 @@ public class SessionUser {
 	}
 	
 	public boolean isLoggedIn(){
-		return (user instanceof Medico || user instanceof Atendente);
+		return (user instanceof Medico || user instanceof Atendente || user instanceof Admin);
 		//return(user != null);
 	}
 }

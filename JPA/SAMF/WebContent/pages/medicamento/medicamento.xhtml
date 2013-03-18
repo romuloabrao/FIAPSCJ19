@@ -11,21 +11,14 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Manutenção de Medicamentos</legend>
-				<div class="control-group">
-					<p:outputLabel styleClass="control-label" for="id" value="Código:" />
-					<div class="controls">
-						<p:inputText disabled="true" id="id"
-							value="#{medicamentoMB.medicamento.codigo}" required="true"
-							label="Codigo" />
-					</div>
-				</div>
+
+				<h:inputHidden value="#{medicamentoMB.medicamento.codigo}" />
 
 				<div class="control-group">
 					<p:outputLabel styleClass="control-label" for="nome" value="Nome:" />
 					<div class="controls">
-						<p:inputText id="nome"
-							value="#{medicamentoMB.medicamento.nome}" required="true"
-							label="Nome" />
+						<p:inputText id="nome" value="#{medicamentoMB.medicamento.nome}"
+							required="#{empty param['skipValidation']}" label="Nome" />
 					</div>
 				</div>
 
@@ -33,9 +26,8 @@
 					<p:outputLabel styleClass="control-label" for="valor"
 						value="Valor:" />
 					<div class="controls">
-						<p:inputText id="valor"
-							value="#{medicamentoMB.medicamento.valor}" required="true"
-							label="Nome" />
+						<p:inputText id="valor" value="#{medicamentoMB.medicamento.valor}"
+							required="true" label="Nome" />
 					</div>
 				</div>
 
@@ -44,16 +36,20 @@
 						value="Fabricante:" />
 					<div class="controls">
 						<p:inputText id="fabricante"
-							value="#{medicamentoMB.medicamento.fabricante}"
-							required="true" label="Nome" />
+							value="#{medicamentoMB.medicamento.fabricante}" required="#{empty param['skipValidation']}"
+							label="Nome" />
 					</div>
 				</div>
 
 				<div class="control-group">
 					<div class="controls">
-						<h:commandButton styleClass="btn"
-							value="#{medicamentoMB.acao}" action="viewmedicamento"
-							actionListener="#{medicamentoMB.salvar}" ajax="false">
+						<h:commandButton styleClass="btn" value="#{medicamentoMB.acao}"
+							action="viewmedicamento" actionListener="#{medicamentoMB.salvar}"
+							ajax="false">
+						</h:commandButton>
+						<h:commandButton styleClass="btn" action="viewmedicamento"
+							value="voltar" ajax="false">
+							<f:param name="skipValidation" value="true" />
 						</h:commandButton>
 					</div>
 				</div>

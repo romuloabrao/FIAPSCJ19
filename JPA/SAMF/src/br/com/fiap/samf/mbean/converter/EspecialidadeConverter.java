@@ -29,8 +29,7 @@ public class EspecialidadeConverter implements Converter{
 		if (value != null && value instanceof Especialidade){
 			return String.valueOf(((Especialidade) value).getCodigo());  
 		}
-		//System.out.println("getAsString:"+value.toString());
-		return null;  
+		return "";  
 	}
 
 }

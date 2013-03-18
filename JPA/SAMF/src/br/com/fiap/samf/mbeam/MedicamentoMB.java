@@ -28,9 +28,8 @@ public class MedicamentoMB {
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("medicamento");
-		if (doc != null && doc.getClasse().equals(Medicamento.class)) {
-			this.medicamento.setCodigo((Long) doc.getCodigo());
+		if(medicamento.getCodigo().longValue()==0){
+			medicamento.setCodigo(null);
 		}
 		control.salvar(medicamento);
 	}
@@ -49,7 +48,6 @@ public class MedicamentoMB {
 	}
 	
 	public String editar() {
-		SessionManager.createSessionDoc(new DocumentSelectedMB(medicamento.getClass(), medicamento.getCodigo()),"medicamento");
 		return "medicamento";
 	}
 

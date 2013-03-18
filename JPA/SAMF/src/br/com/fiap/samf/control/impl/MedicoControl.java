@@ -11,12 +11,6 @@ public class MedicoControl extends GenericCrudControl<Medico>{
 	public MedicoControl() {
 		super(Medico.class , MedicoDAO.class);
 	}
-	/*
-	public void criar(Tratamento tratamento,List<Convenio> list){
-		em.getTransaction().begin();
-		((TratamentoDAO)dao).criar(tratamento,list);
-		em.getTransaction().commit();
-	}*/
 	
 	public List<Medico> buscarMedicos(Especialidade esp){
 		return ((MedicoDAO)dao).listar(esp);

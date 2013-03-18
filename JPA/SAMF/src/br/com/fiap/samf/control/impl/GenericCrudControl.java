@@ -18,7 +18,7 @@ public class GenericCrudControl<T extends BaseEntity<?>> implements CrudControl<
 	protected DAO<T> dao;
 	
 	/**
-	 * Construtor automaticamente utiliza o {@link GenericDAO} para persistência
+	 * Construtor automaticamente utiliza o {@link GenericDAO} para persistï¿½ncia
 	 * 
 	 * **/
 	public GenericCrudControl(Class<T> classe) {
@@ -71,8 +71,8 @@ public class GenericCrudControl<T extends BaseEntity<?>> implements CrudControl<
 
 	@Override
 	public void salvar(T t) {
-		em.getTransaction().begin();		
-		if(t.getCodigo()!=null ){
+		em.getTransaction().begin();
+		if(t.getCodigo()!=null){
 			em.getReference(classe, t.getCodigo());
 			dao.atualizar(t);
 		}else{

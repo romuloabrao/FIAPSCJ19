@@ -17,5 +17,10 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 			.getSingleResult();	
 		return userAut;
 	}
+	
+	public boolean contem(Usuario usuario){
+		return !em.createNamedQuery("verificaUsuario")
+			.setParameter("uuser", usuario.getUser()).setParameter("ucodigo", usuario.getCodigo()).getResultList().isEmpty();
+	}	
 
 }

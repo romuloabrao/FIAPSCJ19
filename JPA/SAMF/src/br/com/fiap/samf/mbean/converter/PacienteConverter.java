@@ -27,7 +27,7 @@ public class PacienteConverter implements Converter{
 		if (value != null && value instanceof Paciente){
 			return String.valueOf(((Paciente) value).getCodigo());  
 		}
-		return null;  
+		return "";  
 	}
 
 }

@@ -12,8 +12,10 @@
 			<fieldset>
 				<legend>Manutenção de Agendamento</legend>
 
+				<h:inputHidden value="#{agendamentoMB.agendamento.codigo}" />
+
 				<div class="control-group">
-					<h:outputLabel styleClass="control-label" for="nomeAtendente"
+					<p:outputLabel styleClass="control-label" for="nomeAtendente"
 						value="Nome do Atendente:" />
 					<div class="controls">
 						<h:inputText disabled="true" id="nomeAtendente"
@@ -22,10 +24,11 @@
 				</div>
 
 				<div class="control-group">
-					<h:outputLabel styleClass="control-label" for="dataAgend"
+					<p:outputLabel styleClass="control-label" for="dataAgend"
 						value="Data do Agendamento" />
 					<div class="controls">
 						<p:calendar id="dataAgend"
+							required="#{empty param['skipValidation']}"
 							value="#{agendamentoMB.agendamento.data}" pattern="dd/MM/yyyy" />
 					</div>
 				</div>
@@ -36,8 +39,9 @@
 					<div class="controls">
 						<h:selectOneMenu id="paciente"
 							value="#{agendamentoMB.agendamento.paciente}"
+							required="#{empty param['skipValidation']}"
 							converter="samf.PacienteConverter">
-							<f:selectItem itemValue="" itemLabel="selecione"/>
+							<f:selectItem itemValue="" itemLabel="selecione" />
 							<f:selectItems value="#{pacienteMB.pacientes}" var="paciente"
 								itemLabel="#{paciente.nome}" itemValue="#{paciente}" />
 							<f:ajax event="change" render="convenioNome"
@@ -60,9 +64,8 @@
 						value="Atendimento" />
 					<div class="controls">
 						<h:selectOneMenu id="especialidade"
-							value="#{agendamentoMB.campoEspecialidade}"
 							converter="samf.EspecialidadeConverter">
-							<f:selectItem itemValue="" itemLabel="selecione"/>
+							<f:selectItem itemValue="" itemLabel="selecione" />
 							<f:selectItems value="#{especialiadeMB.especialidades}"
 								var="especialidade" itemLabel="#{especialidade.nome}"
 								itemValue="#{especialidade}" />
@@ -77,7 +80,7 @@
 						value="Medico" />
 					<div class="controls">
 						<h:selectOneMenu id="medico"
-							value="#{agendamentoMB.agendamento.medico}"
+							value="#{agendamentoMB.agendamento.medico}" required="#{empty param['skipValidation']}"
 							converter="samf.MedicoConverter">
 							<f:selectItem
 								itemLabel="#{agendamentoMB.agendamento.medico.nome}"
@@ -94,7 +97,8 @@
 							actionListener="#{agendamentoMB.salvar}"
 							value="#{agendamentoMB.acao}" ajax="false" />
 						<h:commandButton styleClass="btn" action="viewagendamento"
-							actionListener="#{agendamentoMB.limparSessao}" value="voltar" ajax="false">
+							actionListener="#{agendamentoMB.limparSessao}" value="voltar"
+							ajax="false">
 							<f:param name="skipValidation" value="true" />
 						</h:commandButton>
 					</div>

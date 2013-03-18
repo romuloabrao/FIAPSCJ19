@@ -15,6 +15,10 @@ public class UsuarioControl extends GenericCrudControl<Usuario>{
 		return ((UsuarioDAO)dao).login(user);
 	}
 	
+	public boolean verifica(Usuario user){
+		return ((UsuarioDAO)dao).contem(user);
+		
+	}
 	
 	
 }

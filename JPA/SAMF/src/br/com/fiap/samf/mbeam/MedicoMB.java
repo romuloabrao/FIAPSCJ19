@@ -2,14 +2,17 @@ package br.com.fiap.samf.mbeam;
 
 import java.util.List;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 import br.com.fiap.samf.control.CrudControl;
+import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.control.impl.MedicoControl;
-import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
+import br.com.fiap.samf.control.impl.UsuarioControl;
 import br.com.fiap.samf.model.Medico;
-import br.com.fiap.samf.util.SessionManager;
 
 @ManagedBean
 @RequestScoped
@@ -19,7 +22,7 @@ public class MedicoMB {
 	private CrudControl<Medico> control;
 	
 	public MedicoMB() {
-		this.control = new MedicoControl();
+		this.control = new GenericCrudControl<Medico>(Medico.class);
 	}
 	
 	public Medico getMed() {
@@ -30,11 +33,14 @@ public class MedicoMB {
 	}
 	
 	public void salvar(){
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("medico");
-		if (doc != null && doc.getClasse().equals(Medico.class)) {
-			this.med.setCodigo((Long) doc.getCodigo());
+		UsuarioControl uControl = new UsuarioControl();
+		if(med.getCodigo().longValue()==0){
+			med.setCodigo(null);
 		}
-		this.control.salvar(med);
+		
+		if(!uControl.verifica(med)){
+			this.control.salvar(med);
+		}
 	}
 	
 	public List<Medico> getMedicos() {
@@ -51,8 +57,6 @@ public class MedicoMB {
 	}
 	
 	public String editar() {
-		DocumentSelectedMB doc =new DocumentSelectedMB(med.getClass(), med.getCodigo());
-		SessionManager.createSessionDoc(doc,"medico");
 		return "medico";
 	}
 	

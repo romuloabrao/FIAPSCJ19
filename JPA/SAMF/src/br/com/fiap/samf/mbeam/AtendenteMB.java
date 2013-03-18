@@ -6,9 +6,7 @@ import javax.faces.bean.RequestScoped;
 
 import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
-import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
 import br.com.fiap.samf.model.Atendente;
-import br.com.fiap.samf.util.SessionManager;
 
 @ManagedBean
 @RequestScoped
@@ -30,21 +28,18 @@ public class AtendenteMB {
 	}
 
 	public void salvar() {
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("atendente");
-		if (doc != null && doc.getClasse().equals(Atendente.class)) {
-			this.atend.setCodigo((Long) doc.getCodigo());
+		if(atend.getCodigo().longValue()==0){
+			atend.setCodigo(null);
 		}
 		this.control.salvar(atend);
 	}
 
 	public String editar() {
-		SessionManager.createSessionDoc(new DocumentSelectedMB(atend.getClass(), atend.getCodigo()),"atendente");
 		return "atendente";
 	}
 
 	public List<Atendente> getAtendentes() {
-		atendentes = atendentes == null ? this.control.listar() : atendentes;
-		return atendentes;
+		return this.control.listar();
 	}
 
 	public boolean isNewDoc() {

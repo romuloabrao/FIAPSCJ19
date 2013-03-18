@@ -29,7 +29,7 @@ public class TratamentoConverter implements Converter{
 			return String.valueOf(((Tratamento)value).getCodigo());  
 		}
 		//System.out.println("getAsString:"+value.toString());
-		return null;  
+		return "";  
 	}
 	
 }

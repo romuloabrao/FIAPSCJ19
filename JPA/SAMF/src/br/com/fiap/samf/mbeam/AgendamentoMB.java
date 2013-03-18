@@ -1,35 +1,43 @@
 package br.com.fiap.samf.mbeam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.html.HtmlSelectOneMenu;
+import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
 import br.com.fiap.samf.control.CrudControl;
+import br.com.fiap.samf.control.impl.AgendamentoControl;
 import br.com.fiap.samf.control.impl.GenericCrudControl;
+import br.com.fiap.samf.control.impl.MedicamentoControl;
 import br.com.fiap.samf.control.impl.MedicoControl;
+import br.com.fiap.samf.control.impl.TratamentoControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
 import br.com.fiap.samf.model.Agendamento;
 import br.com.fiap.samf.model.Atendente;
 import br.com.fiap.samf.model.Especialidade;
+import br.com.fiap.samf.model.Medicamento;
 import br.com.fiap.samf.model.Medico;
+import br.com.fiap.samf.model.Tratamento;
 import br.com.fiap.samf.util.SessionManager;
 
 @ManagedBean
-@SessionScoped //S� esta assim por que da pau no f:ajax.... n�o tem nenhuma l�gica
+@SessionScoped
 public class AgendamentoMB {
 	private Agendamento agendamento= new Agendamento();
 	private List<Agendamento> agendamentos;
 	
-	//Itens de menor importancia (s� no beam).
+	//Itens de menor importancia (só no beam).
 	private Especialidade campoEspecialidade;
 	private List<Medico> campoMedico;
-	CrudControl<Agendamento> control;
+	AgendamentoControl control;
 	
 	public AgendamentoMB() {
-		this.control = new GenericCrudControl<>(Agendamento.class);
+		this.control = new AgendamentoControl();
 	}
 	
 	@PostConstruct
@@ -50,9 +58,8 @@ public class AgendamentoMB {
 	}
 	
 	public String salvar() {
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("agendamento");
-		if (doc != null && doc.getClasse().equals(Agendamento.class)) {
-			this.agendamento.setCodigo((Long) doc.getCodigo());
+		if(agendamento.getCodigo().longValue()==0){
+			agendamento.setCodigo(null);
 		}
 		this.control.salvar(agendamento);
 		SessionManager.destroySessionDoc("agendamentoMB");
@@ -62,6 +69,16 @@ public class AgendamentoMB {
 	public List<Agendamento> getAgendamentos() {
 		agendamentos = agendamentos == null ? this.control.listar() : agendamentos;
 		return agendamentos;
+	}
+	
+	
+	
+	public List<Agendamento> getAgendamentosDisponiveis() {
+		SessionUser su = (SessionUser) SessionManager.getSessionDoc("sessionUser");
+		if(su!= null && su.getUser() instanceof Medico){
+			return this.control.listar((Medico)su.getUser());
+		}
+		return null;
 	}
 	
 	public boolean isNewDoc(){
@@ -94,11 +111,16 @@ public class AgendamentoMB {
 	
 	public void handleListMedico(AjaxBehaviorEvent evt){
 		MedicoControl control = new MedicoControl();
+		HtmlSelectOneMenu select = (HtmlSelectOneMenu) evt.getComponent();
+		if(select.getValue() instanceof Especialidade){
+			this.campoEspecialidade=(Especialidade)select.getValue();
+		}else{
+			this.campoEspecialidade=null;
+		}
 		this.campoMedico = control.buscarMedicos(this.campoEspecialidade);
 	}
 
 	public String editar() {
-		SessionManager.createSessionDoc(new DocumentSelectedMB(this.agendamento.getClass(), this.agendamento.getCodigo()), "agendamento");
 		return "agendamento";
 	}
 	
@@ -110,5 +132,20 @@ public class AgendamentoMB {
 	
 	public void limparSessao() {
 		SessionManager.destroySessionDoc("agendamentoMB");
+	}
+	
+	public List<Tratamento> getAtendTratamento(){
+		Agendamento ag= (Agendamento) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("agendamento");
+		TratamentoControl tcontrol = new TratamentoControl();
+		List<Tratamento> lista =tcontrol.listar(ag.getCodigo());
+		return lista;
+		
+	}
+	
+	public List<Medicamento> getAtendMedicamento(){
+		Agendamento ag= (Agendamento) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("agendamento");
+		MedicamentoControl mcontrol = new MedicamentoControl();
+		List<Medicamento> lista =mcontrol.listar(ag.getCodigo());
+		return lista;
 	}
 }

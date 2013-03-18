@@ -1,41 +1,36 @@
 package br.com.fiap.samf.mbeam;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.event.AjaxBehaviorEvent;
+
+import br.com.fiap.samf.model.Agendamento;
 import br.com.fiap.samf.model.Atendimento;
-import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.GenericCrudControl;
+import br.com.fiap.samf.model.Medicamento;
+import br.com.fiap.samf.model.Tratamento;
+import br.com.fiap.samf.control.impl.AtendimentoControl;
+
+import javax.faces.component.html.HtmlSelectOneMenu;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
-@RequestScoped
+@SessionScoped
 public class AtendimentoMB {
 	private Atendimento atendimento=new Atendimento();
-	private CrudControl<Atendimento> control;
-	private List<Atendimento> atendimentos;
+	private AtendimentoControl control;
+	private List<Atendimento> atendimentos= new ArrayList<Atendimento>();
 	
+	//Campos
+	private Medicamento campoMedicamento;
+	private Tratamento campoTratamento;
 	
 	public AtendimentoMB() {
-		this.control = new GenericCrudControl<Atendimento>(Atendimento.class);
+		this.control = new AtendimentoControl();
 	}
-	
-	
-	/*@PostConstruct
-	private void init(){
-		//TODO Um pouco ARRUMAR
-		DocumentSelectedMB doc = (DocumentSelectedMB) SessionManager.destroySessionDoc("");
-		if(doc.getClasse().equals(Agendamento.class)){
-			this.atendimento = new Atendimento();
-			CrudControl<Agendamento> agControl = new GenericCrudControl<Agendamento>(Agendamento.class);
-			Agendamento ag = agControl.buscar((Long) doc.getCodigo());
-			this.atendimento.setAgendamento(ag);
-		}else if(doc.getClasse().equals(Atendimento.class)){
-			//TODO Um pouco Diferente...
-		}
-		
-		this.atendimento = doc !=null && Atendimento.class.equals(doc.getClasse())? control.buscar((Long) doc.getCodigo()): new Atendimento();
-	}*/
 	
 	public void setAtendimento(Atendimento atendimento) {
 		this.atendimento = atendimento;
@@ -50,5 +45,51 @@ public class AtendimentoMB {
 		return atendimentos;
 	}
 	
+	public String salvar(){
+		if(atendimento.getCodigo().longValue()==0){
+			atendimento.setCodigo(null);
+		}
+		control.salvar(atendimento);
+		return "atendimento";
+	}
 	
+	public void handleMedicamento(AjaxBehaviorEvent evt){
+		HtmlSelectOneMenu select = (HtmlSelectOneMenu) evt.getComponent();
+		if(select.getValue() instanceof Medicamento){
+			this.campoMedicamento=(Medicamento)select.getValue();
+		}else{
+			this.campoMedicamento=null;
+		}
+	}
+	
+	public void handleListMedicamento(AjaxBehaviorEvent evt){
+		if( this.atendimento.getMedicamentos() == null){
+			this.atendimento.setMedicamentos(new ArrayList<Medicamento>());
+		}
+		if(campoMedicamento!=null){
+			if(!this.atendimento.getMedicamentos().contains(campoMedicamento)){
+				this.atendimento.getMedicamentos().add(campoMedicamento);
+			}
+		}
+	}
+	
+	public void handleTratamento(AjaxBehaviorEvent evt){
+		HtmlSelectOneMenu select = (HtmlSelectOneMenu) evt.getComponent();
+		if(select.getValue() instanceof Tratamento){
+			this.campoTratamento=(Tratamento)select.getValue();
+		}else{
+			this.campoTratamento=null;
+		}
+	}
+	
+	public void handleListTratamento(AjaxBehaviorEvent evt){
+		if( this.atendimento.getTratamentos() == null){
+			this.atendimento.setTratamentos(new ArrayList<Tratamento>());
+		}
+		if(campoMedicamento!=null){
+			if(!this.atendimento.getTratamentos().contains(campoTratamento)){
+				this.atendimento.getTratamentos().add(campoTratamento);
+			}
+		}
+	}
 }
