@@ -2,14 +2,11 @@ package br.com.fiap.samf.mbeam;
 
 import java.util.List;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.validator.ValidatorException;
 
 import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.control.impl.MedicoControl;
 import br.com.fiap.samf.control.impl.UsuarioControl;
 import br.com.fiap.samf.model.Medico;
@@ -18,11 +15,10 @@ import br.com.fiap.samf.model.Medico;
 @RequestScoped
 public class MedicoMB {
 	private Medico med= new Medico();
-	private List<Medico> medicos;
 	private CrudControl<Medico> control;
 	
 	public MedicoMB() {
-		this.control = new GenericCrudControl<Medico>(Medico.class);
+		this.control = new MedicoControl();
 	}
 	
 	public Medico getMed() {
@@ -44,8 +40,7 @@ public class MedicoMB {
 	}
 	
 	public List<Medico> getMedicos() {
-		this.medicos = this.medicos == null? this.control.listar(): this.medicos;
-		return medicos;
+		return this.control.listar();
 	}
 	
 	public boolean isNewDoc(){
@@ -58,6 +53,17 @@ public class MedicoMB {
 	
 	public String editar() {
 		return "medico";
+	}
+	
+	public String remover(){
+		Medico item =(Medico) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("med");
+		control.remover(item);
+		return "viewtratamento";
+	}
+	
+	public boolean getRemovable(){
+		Medico item =(Medico) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("med");
+		return ((MedicoControl)control).validaDel(item);
 	}
 	
 	

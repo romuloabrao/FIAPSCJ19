@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,8 +25,6 @@ public class Atendimento implements BaseEntity<Long> {
 	@OneToOne
 	private Agendamento agendamento;
 	private String descr;
-	@ManyToOne
-	private Convenio convenio;
 	@OneToMany
 	private List<Tratamento> tratamentos;
 	@OneToMany
@@ -55,14 +52,6 @@ public class Atendimento implements BaseEntity<Long> {
 
 	public void setDescr(String descr) {
 		this.descr = descr;
-	}
-
-	public Convenio getConvenio() {
-		return convenio;
-	}
-
-	public void setConvenio(Convenio convenio) {
-		this.convenio = convenio;
 	}
 
 	public List<Tratamento> getTratamentos() {

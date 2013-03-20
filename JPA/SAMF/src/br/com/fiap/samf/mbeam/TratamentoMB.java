@@ -4,6 +4,8 @@ package br.com.fiap.samf.mbeam;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+
 import br.com.fiap.samf.control.impl.TratamentoControl;
 import br.com.fiap.samf.model.Tratamento;
 
@@ -12,7 +14,6 @@ import br.com.fiap.samf.model.Tratamento;
 @RequestScoped
 public class TratamentoMB {
 	private Tratamento tratamento=new Tratamento();
-	private List<Tratamento> tratamentos;
 	private TratamentoControl control;
 	
 	public TratamentoMB() {
@@ -35,8 +36,7 @@ public class TratamentoMB {
 	}
 	
 	public List<Tratamento> getTratamentos() {
-		tratamentos = tratamentos == null?control.listar():tratamentos;
-		return tratamentos;
+		return control.listar();
 	}
 	
 	public boolean isNewDoc(){
@@ -49,6 +49,17 @@ public class TratamentoMB {
 	
 	public String editar() {
 		return "tratamento";
+	}
+	
+	public String remover(){
+		Tratamento t =(Tratamento) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("tratamento");
+		control.remover(t);
+		return "viewtratamento";
+	}
+	
+	public boolean getRemovable(){
+		Tratamento t =(Tratamento) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("tratamento");
+		return control.validaDel(t);
 	}
 	
 }

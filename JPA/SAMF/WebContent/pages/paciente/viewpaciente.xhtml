@@ -11,7 +11,8 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Lista de Paciente</legend>
-				<h:commandLink styleClass="btn" action="paciente" value="Novo Paciente"/>
+				<h:commandLink styleClass="btn" action="paciente"
+					value="Novo Paciente" />
 				<h:dataTable styleClass="table table-striped"
 					value="#{pacienteMB.pacientes}" var="paciente">
 
@@ -54,9 +55,18 @@
 						<f:facet name="header">
 							<h:outputText value="Operações" />
 						</f:facet>
-						<h:commandLink action="#{pacienteMB.editar}" value="Editar" >
-							<f:setPropertyActionListener target="#{pacienteMB.paciente}" value="#{paciente}"/>
-						</h:commandLink>
+						<div class="btn-group">
+							<h:commandButton styleClass="btn btn-warning"
+								action="#{pacienteMB.editar}" value="E">
+								<f:setPropertyActionListener target="#{pacienteMB.paciente}"
+									value="#{paciente}" />
+							</h:commandButton>
+							<h:commandButton action="viewtratamento"
+								actionListener="#{pacienteMB.remover}" value="R"
+								styleClass="btn btn-danger" disabled="#{pacienteMB.removable}">
+								<f:param name="paciente" value="#{paciente}" />
+							</h:commandButton>
+						</div>
 					</h:column>
 
 

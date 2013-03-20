@@ -5,10 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-
+@NamedQuery(name="validaTratamento",query="SELECT at FROM Atendimento at INNER JOIN at.tratamentos t WHERE t.codigo = :codigo")
 @Entity
 public class Tratamento implements BaseEntity<Long> {
 	/**

@@ -5,22 +5,20 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.GenericCrudControl;
-import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
+import br.com.fiap.samf.control.impl.PacienteControl;
 import br.com.fiap.samf.model.Paciente;
-import br.com.fiap.samf.util.SessionManager;
 
 @ManagedBean
 @RequestScoped
 public class PacienteMB{
 	private Paciente paciente=new Paciente();
 	private CrudControl<Paciente> control;
-	private List<Paciente> pacientes;
 	
 	public PacienteMB() {
-		control = new GenericCrudControl<Paciente>(Paciente.class);
+		control = new PacienteControl();
 	}
 	
 	public void setPaciente(Paciente paciente) {
@@ -43,8 +41,7 @@ public class PacienteMB{
 	}
 	
 	public List<Paciente> getPacientes() {
-		this.pacientes = this.pacientes == null? this.control.listar(): this.pacientes;
-		return pacientes;
+		return this.control.listar();
 	}
 	public boolean isNewDoc(){
 		return paciente.getCodigo()== null;
@@ -56,5 +53,16 @@ public class PacienteMB{
 	
 	public String editar() {
 		return "paciente";
+	}
+	
+	public String remover(){
+		Paciente item =(Paciente) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("paciente");
+		control.remover(item);
+		return "viewtratamento";
+	}
+	
+	public boolean getRemovable(){
+		Paciente item =(Paciente) FacesContext.getCurrentInstance().getExternalContext().getRequestMap().get("paciente");
+		return ((PacienteControl)control).validaDel(item);
 	}
 }

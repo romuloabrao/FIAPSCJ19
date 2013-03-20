@@ -12,7 +12,6 @@ import br.com.fiap.samf.model.Atendente;
 @RequestScoped
 public class AtendenteMB {
 	private Atendente atend=new Atendente();
-	private List<Atendente> atendentes;
 	private CrudControl<Atendente> control;
 
 	public AtendenteMB() {

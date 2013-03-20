@@ -33,7 +33,6 @@ public class SessionUser {
 	}
 	
 	public boolean isLoggedIn(){
-		return (user instanceof Medico || user instanceof Atendente || user instanceof Admin);
-		//return(user != null);
+		return user instanceof Medico || user instanceof Atendente || user instanceof Admin;
 	}
 }

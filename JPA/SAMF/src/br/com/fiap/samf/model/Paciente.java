@@ -7,8 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
+@NamedQuery(name="validaPaciente",query="SELECT ag FROM Agendamento ag INNER JOIN ag.paciente p WHERE p.codigo = :codigo")
 
 @Entity
 public class Paciente implements Serializable, BaseEntity<Long>{

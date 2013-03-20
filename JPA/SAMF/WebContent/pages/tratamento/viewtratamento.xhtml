@@ -10,7 +10,8 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Lista de Tratamento</legend>
-				<h:commandLink styleClass="btn" action="tratamento" value="Novo Tratamento"/>
+				<h:commandLink styleClass="btn" action="tratamento"
+					value="Novo Tratamento" />
 				<h:dataTable styleClass="table table-striped"
 					value="#{tratamentoMB.tratamentos}" var="tratamento">
 
@@ -39,15 +40,23 @@
 						<f:facet name="header">
 							<h:outputText value="Operações" />
 						</f:facet>
-
-						<h:commandLink action="#{tratamentoMB.editar}" value="Editar" >
-							<f:setPropertyActionListener target="#{tratamentoMB.tratamento}" value="#{tratamento}"/>
-						</h:commandLink>
+						<div class="btn-group">
+							<h:commandButton action="#{tratamentoMB.editar}" value="E"
+								styleClass="btn btn-warning">
+								<f:setPropertyActionListener target="#{tratamentoMB.tratamento}"
+									value="#{tratamento}" />
+							</h:commandButton>
+							<h:commandButton action="viewtratamento"
+								actionListener="#{tratamentoMB.remover}" value="R"
+								styleClass="btn btn-danger" disabled="#{tratamentoMB.removable}">
+								<f:param name="tratamento" value="#{tratamento}" />
+							</h:commandButton>
+						</div>
 					</h:column>
 
 				</h:dataTable>
 			</fieldset>
 		</h:form>
-</ui:define>
+	</ui:define>
 </ui:composition>
 </html>

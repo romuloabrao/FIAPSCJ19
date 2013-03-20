@@ -1,8 +1,10 @@
 package br.com.fiap.samf.dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 
 import br.com.fiap.samf.model.Usuario;
+import br.com.fiap.samf.util.SessionManager;
 
 public class UsuarioDAO extends GenericDAO<Usuario>{
 
@@ -11,11 +13,16 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
 	}
 	
 	public Usuario login(Usuario usuario){
-		Usuario userAut = (Usuario)em.createNamedQuery("validaUsuario")
-			.setParameter("uuser", usuario.getUser())
-			.setParameter("usenha", usuario.getSenha())
-			.getSingleResult();	
-		return userAut;
+		try {
+			Usuario userAut = (Usuario)em.createNamedQuery("validaUsuario").setParameter("uuser", usuario.getUser())
+					.setParameter("usenha", usuario.getSenha())
+					.getSingleResult();	
+			return userAut;
+		} catch (NoResultException e) {
+			SessionManager.destroySessionDoc("sessionUser");
+			return null;
+			
+		}
 	}
 	
 	public boolean contem(Usuario usuario){

@@ -2,7 +2,6 @@ package br.com.fiap.samf.control.impl;
 
 import java.util.List;
 
-import br.com.fiap.samf.dao.GenericDAO;
 import br.com.fiap.samf.dao.MedicamentoDAO;
 import br.com.fiap.samf.model.Medicamento;
 

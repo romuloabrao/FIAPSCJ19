@@ -4,25 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import br.com.fiap.samf.model.Agendamento;
 import br.com.fiap.samf.model.Atendimento;
 import br.com.fiap.samf.model.Medicamento;
 import br.com.fiap.samf.model.Tratamento;
 import br.com.fiap.samf.control.impl.AtendimentoControl;
 
 import javax.faces.component.html.HtmlSelectOneMenu;
-import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
 public class AtendimentoMB {
 	private Atendimento atendimento=new Atendimento();
 	private AtendimentoControl control;
-	private List<Atendimento> atendimentos= new ArrayList<Atendimento>();
 	
 	//Campos
 	private Medicamento campoMedicamento;
@@ -41,8 +37,7 @@ public class AtendimentoMB {
 	}
 	
 	public List<Atendimento> getAtendimentos() {
-		this.atendimentos = this.atendimentos == null? this.control.listar(): this.atendimentos;
-		return atendimentos;
+		return this.control.listar();
 	}
 	
 	public String salvar(){

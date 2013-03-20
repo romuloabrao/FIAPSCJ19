@@ -1,6 +1,6 @@
 package br.com.fiap.samf.mbeam;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -10,9 +10,7 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import br.com.fiap.samf.control.CrudControl;
 import br.com.fiap.samf.control.impl.AgendamentoControl;
-import br.com.fiap.samf.control.impl.GenericCrudControl;
 import br.com.fiap.samf.control.impl.MedicamentoControl;
 import br.com.fiap.samf.control.impl.MedicoControl;
 import br.com.fiap.samf.control.impl.TratamentoControl;

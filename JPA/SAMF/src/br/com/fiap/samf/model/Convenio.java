@@ -1,13 +1,10 @@
 package br.com.fiap.samf.model;
 
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import br.com.fiap.samf.model.Tratamento;
 
 @Entity
 public class Convenio implements  Serializable,BaseEntity<Long>{
