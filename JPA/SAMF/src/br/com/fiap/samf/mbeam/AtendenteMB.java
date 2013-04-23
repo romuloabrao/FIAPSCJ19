@@ -4,18 +4,17 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.GenericCrudControl;
+import br.com.fiap.samf.control.AtendenteControl;
 import br.com.fiap.samf.model.Atendente;
 
 @ManagedBean
 @RequestScoped
 public class AtendenteMB {
 	private Atendente atend=new Atendente();
-	private CrudControl<Atendente> control;
+	private AtendenteControl control;
 
 	public AtendenteMB() {
-		this.control = new GenericCrudControl<Atendente>(Atendente.class);
+		this.control = new AtendenteControl();
 	}
 	
 	public Atendente getAtend() {

@@ -7,15 +7,14 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.PacienteControl;
+import br.com.fiap.samf.control.PacienteControl;
 import br.com.fiap.samf.model.Paciente;
 
 @ManagedBean
 @RequestScoped
 public class PacienteMB{
 	private Paciente paciente=new Paciente();
-	private CrudControl<Paciente> control;
+	private PacienteControl control;
 	
 	public PacienteMB() {
 		control = new PacienteControl();

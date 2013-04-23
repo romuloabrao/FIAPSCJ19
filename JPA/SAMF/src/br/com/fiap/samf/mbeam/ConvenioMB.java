@@ -5,19 +5,18 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.GenericCrudControl;
+import br.com.fiap.samf.control.ConvenioControl;
 import br.com.fiap.samf.model.Convenio;
 
 @ManagedBean
 @RequestScoped
 public class ConvenioMB {
 	public Convenio convenio= new Convenio();
-	public CrudControl<Convenio> control;
+	public ConvenioControl control;
 	private List<Convenio> convenios;
 	
 	public ConvenioMB() {
-		control = new GenericCrudControl<Convenio>(Convenio.class);
+		control = new ConvenioControl();
 	}
 	
 	public void setConvenio(Convenio convenio) {

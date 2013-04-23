@@ -11,17 +11,17 @@
 		<h:form styleClass="form-horizontal">
 			<fieldset>
 				<legend>Lista de Médicos</legend>
-				<h:commandLink styleClass="btn" action="medico" value="Novo Medico"/>
+				<h:commandLink styleClass="btn" action="medico" value="Novo Medico" />
 				<h:dataTable styleClass="table table-striped"
 					value="#{medicoMB.medicos}" var="med">
-					
+
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="#" />
 						</f:facet>
 						<h:outputText value="#{med.codigo}" />
 					</h:column>
-					
+
 					<h:column>
 						<f:facet name="header">
 							<h:outputText value="Nome" />
@@ -47,14 +47,18 @@
 						<f:facet name="header">
 							<h:outputText value="Operações" />
 						</f:facet>
-						<h:commandButton styleClass="btn btn-warning" action="#{medicoMB.editar}" value="E" >
-							<f:setPropertyActionListener target="#{medicoMB.med}" value="#{med}"/>
-						</h:commandButton>
-						<h:commandButton action="viewtratamento"
+						<div class="btn-group">
+							<h:commandButton styleClass="btn btn-warning"
+								action="#{medicoMB.editar}" value="E">
+								<f:setPropertyActionListener target="#{medicoMB.med}"
+									value="#{med}" />
+							</h:commandButton>
+							<h:commandButton action="viewtratamento"
 								actionListener="#{medicoMB.remover}" value="R"
 								styleClass="btn btn-danger" disabled="#{medicoMB.removable}">
 								<f:param name="med" value="#{med}" />
 							</h:commandButton>
+						</div>
 					</h:column>
 
 				</h:dataTable>

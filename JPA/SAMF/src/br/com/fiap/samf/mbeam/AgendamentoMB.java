@@ -10,10 +10,10 @@ import javax.faces.component.html.HtmlSelectOneMenu;
 import javax.faces.context.FacesContext;
 import javax.faces.event.AjaxBehaviorEvent;
 
-import br.com.fiap.samf.control.impl.AgendamentoControl;
-import br.com.fiap.samf.control.impl.MedicamentoControl;
-import br.com.fiap.samf.control.impl.MedicoControl;
-import br.com.fiap.samf.control.impl.TratamentoControl;
+import br.com.fiap.samf.control.AgendamentoControl;
+import br.com.fiap.samf.control.MedicamentoControl;
+import br.com.fiap.samf.control.MedicoControl;
+import br.com.fiap.samf.control.TratamentoControl;
 import br.com.fiap.samf.mbean.utils.DocumentSelectedMB;
 import br.com.fiap.samf.model.Agendamento;
 import br.com.fiap.samf.model.Atendente;

@@ -3,7 +3,7 @@ package br.com.fiap.samf.mbeam;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import br.com.fiap.samf.control.impl.UsuarioControl;
+import br.com.fiap.samf.control.UsuarioControl;
 import br.com.fiap.samf.model.Admin;
 import br.com.fiap.samf.model.Atendente;
 import br.com.fiap.samf.model.Medico;

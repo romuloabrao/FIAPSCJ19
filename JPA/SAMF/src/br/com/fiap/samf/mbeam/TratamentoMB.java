@@ -6,7 +6,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.fiap.samf.control.impl.TratamentoControl;
+import br.com.fiap.samf.control.TratamentoControl;
 import br.com.fiap.samf.model.Tratamento;
 
 

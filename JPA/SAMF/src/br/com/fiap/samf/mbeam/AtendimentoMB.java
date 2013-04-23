@@ -10,7 +10,7 @@ import javax.faces.event.AjaxBehaviorEvent;
 import br.com.fiap.samf.model.Atendimento;
 import br.com.fiap.samf.model.Medicamento;
 import br.com.fiap.samf.model.Tratamento;
-import br.com.fiap.samf.control.impl.AtendimentoControl;
+import br.com.fiap.samf.control.AtendimentoControl;
 
 import javax.faces.component.html.HtmlSelectOneMenu;
 

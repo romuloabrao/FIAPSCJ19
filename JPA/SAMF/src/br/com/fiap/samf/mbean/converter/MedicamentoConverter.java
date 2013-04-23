@@ -6,7 +6,7 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 
-import br.com.fiap.samf.control.impl.GenericCrudControl;
+import br.com.fiap.samf.control.MedicamentoControl;
 import br.com.fiap.samf.model.Medicamento;
 
 @FacesConverter(value="samf.MedicamentoConverter")
@@ -14,7 +14,7 @@ public class MedicamentoConverter implements Converter{
 	public Object getAsObject(FacesContext arg0, UIComponent arg1, String value) {
 		if(value != null && !value.isEmpty()){
 			try {
-				return new GenericCrudControl<Medicamento>(Medicamento.class).buscar(Integer.valueOf(value).longValue());
+				return new MedicamentoControl().buscar(Integer.valueOf(value).longValue());
 			} catch (Exception e) {
 				throw new ConverterException(e.getMessage());
 			}

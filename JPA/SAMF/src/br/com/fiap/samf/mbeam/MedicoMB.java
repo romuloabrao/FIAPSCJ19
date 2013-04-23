@@ -6,16 +6,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.MedicoControl;
-import br.com.fiap.samf.control.impl.UsuarioControl;
+import br.com.fiap.samf.control.MedicoControl;
+import br.com.fiap.samf.control.UsuarioControl;
 import br.com.fiap.samf.model.Medico;
 
 @ManagedBean
 @RequestScoped
 public class MedicoMB {
 	private Medico med= new Medico();
-	private CrudControl<Medico> control;
+	private MedicoControl control;
 	
 	public MedicoMB() {
 		this.control = new MedicoControl();

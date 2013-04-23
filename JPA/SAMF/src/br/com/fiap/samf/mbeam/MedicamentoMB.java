@@ -4,19 +4,20 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.GenericCrudControl;
+
+import br.com.fiap.samf.control.MedicamentoControl;
 import br.com.fiap.samf.model.Medicamento;
 import br.com.fiap.samf.util.SessionManager;
+
 @ManagedBean
 @RequestScoped
 public class MedicamentoMB {
 	private Medicamento medicamento=new Medicamento();
 	private List<Medicamento> medicamentos;
-	private CrudControl<Medicamento> control;
+	private MedicamentoControl control;
 	
 	public MedicamentoMB() {
-		control = new GenericCrudControl<Medicamento>(Medicamento.class);
+		control = new MedicamentoControl();
 	}
 	
 	public void setMedicamento(Medicamento medicamento) {

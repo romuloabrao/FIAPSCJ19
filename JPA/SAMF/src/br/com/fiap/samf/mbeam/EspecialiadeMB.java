@@ -5,19 +5,18 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import br.com.fiap.samf.control.CrudControl;
-import br.com.fiap.samf.control.impl.GenericCrudControl;
+import br.com.fiap.samf.control.EspecialidadeControl;
 import br.com.fiap.samf.model.Especialidade;
 
 @ManagedBean
 @RequestScoped
 public class EspecialiadeMB {
 	private Especialidade especialidade=new Especialidade();
-	private CrudControl<Especialidade> control;
+	private EspecialidadeControl control;
 	private List<Especialidade> especialidades;
 	
 	public EspecialiadeMB() {
-		this.control =new GenericCrudControl<Especialidade>(Especialidade.class);
+		this.control =new EspecialidadeControl();
 	}
 	
 	public void setEspecialidade(Especialidade especialidade) {
